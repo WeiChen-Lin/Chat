@@ -26,7 +26,6 @@ const friend_list = [
     }
 ]
 
-
 class Friendlist extends React.Component {
 
     constructor(props) {
@@ -41,11 +40,11 @@ class Friendlist extends React.Component {
 
         const friends = this.state.friend_list.map( (value, index) => {
             return <Friend 
-            key={value.userID} 
-            name={value.name} 
-            image={value.image}
-            last_min={value.last_min}
-            last_msg={value.last_msg}
+                key={value.userID} 
+                name={value.name} 
+                image={value.image}
+                last_min={value.last_min}
+                last_msg={value.last_msg}
             />
         })
 
