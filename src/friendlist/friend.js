@@ -9,14 +9,14 @@ class Friend extends React.Component {
                     src={this.props.image} alt="username" />
                 <div className="w-full pb-2">
                     <div className="flex justify-between">
-                    <span className="block ml-2 font-semibold text-gray-600"> {this.props.name} </span>
-                    <span className="block ml-2 text-sm text-gray-600"> {this.props.last_min} </span>
+                        <span className="block ml-2 font-semibold text-gray-600"> {this.props.name} </span>
+                        <span className="block ml-2 text-sm text-gray-600"> {this.props.last_min} </span>
                     </div>
-                    <span className="block ml-2 text-sm text-gray-600"> { this.props.last_msg }</span>
+                    <span className="block ml-2 text-sm text-gray-600"> {this.props.last_msg}</span>
                 </div>
             </a>
         )
     }
 }
 
-export default Friend;
+export default Friend

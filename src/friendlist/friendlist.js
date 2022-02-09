@@ -32,16 +32,16 @@ class Friendlist extends React.Component {
         super(props)
 
         this.state = {
-            friend_list:  friend_list
+            friend_list: friend_list
         }
     }
 
     render() {
 
-        const friends = this.state.friend_list.map( (value, index) => {
-            return <Friend 
-                key={value.userID} 
-                name={value.name} 
+        const friends = this.state.friend_list.map((value, index) => {
+            return <Friend
+                key={value.userID}
+                name={value.name}
                 image={value.image}
                 last_min={value.last_min}
                 last_msg={value.last_msg}
@@ -54,10 +54,10 @@ class Friendlist extends React.Component {
                 <ul className="overflow-auto h-[32rem]">
                     <h2 class="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
                     {friends}
-                </ul>    
+                </ul>
             </div>
         )
     }
 }
 
-export default Friendlist;
+export default Friendlist
