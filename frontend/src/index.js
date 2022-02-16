@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Container from './container';
+import Container from './container';
 import IndexPage from './logPage'
 import './index.css';
 import "@material-tailwind/react/tailwind.css";
