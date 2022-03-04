@@ -28,6 +28,21 @@ export default function IndexPage() {
               />
             </div>
           </div>
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label for="nickname" className="sr-only">
+                密碼
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="密碼"
+              />
+            </div>
+          </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
@@ -50,8 +65,7 @@ export default function IndexPage() {
                 href="javascript:void(0)"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
-                {" "}
-                忘記暱稱
+                忘記密碼
               </a>
             </div>
           </div>

@@ -1,5 +1,3 @@
-from tokenize import Token
-from black import token
 from fastapi import APIRouter, Cookie
 from pydantic import BaseModel
 from typing import Optional
@@ -14,6 +12,8 @@ class UserInfo(BaseModel):
 # 登入機制
 # 1. 第一次登入，Server回傳 JWT Token，存在cookie中
 # 2. 之後登入先 check cookie中的JWT，若有則放行
+
+SECRET_KEY = "wM7xmBeJm7DeMcx0Sg5s8VQLl7QzUDlx9yxRx1aNi4k="
 
 
 @router.get("/refresh_token")

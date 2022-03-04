@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Feb 24 23:07:25 2022
+# Make data base, printed on Fri Mar  4 10:22:04 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 CLUTTER_IM_MODULE = xim
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-57c0f4b7-9e4c-4589-8060-654ba5171841.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-41d12e91-b1b6-488c-a1aa-edd4f034a4d2.sock
 # environment
 LC_NAME = lzh_TW
 # environment
@@ -97,7 +97,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/wcl-nb:@/tmp/.ICE-unix/3008,unix/wcl-nb:/tmp/.ICE-unix/3008
+SESSION_MANAGER = local/wcl-nb:@/tmp/.ICE-unix/3002,unix/wcl-nb:/tmp/.ICE-unix/3002
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -141,7 +141,7 @@ PWD = /home/wcl/Desktop/ReactPractice/chat
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 3086
+SSH_AGENT_PID = 3080
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -233,7 +233,7 @@ S_COLORS = auto
 # environment
 QT_ACCESSIBILITY = 1
 # environment
-DESKTOP_AUTOSTART_ID = 1029a7b9914260ce22164571471413116700000030080007
+DESKTOP_AUTOSTART_ID = 1081ebba5831a7c293164635836526643100000030020007
 # environment
 DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
 # environment
@@ -266,11 +266,11 @@ QT4_IM_MODULE = xim
 # makefile (from 'Makefile', line 1)
 current_site := /home/wcl/Desktop/ReactPractice/chat
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/06b47600_2ec3_4367_9730_a2f5d8ab939f
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/f6fbe605_7a9e_4377_ba92_4f6c365cbf93
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.102
+GNOME_TERMINAL_SERVICE = :1.86
 # default
 SUFFIXES := 
 # environment
@@ -286,12 +286,12 @@ LC_IDENTIFICATION = lzh_TW
 # environment
 LC_ADDRESS = lzh_TW
 # environment
-LANG = C
  
+LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 5795
+VSCODE_PID = 7029
 # variable set hash-table stats:
 # Load=138/1024=13%, Rehash=0, Collisions=25/166=15%
 
@@ -353,6 +353,6 @@ run-fastapi:
 # strcache performance: lookups = 21 / hit rate = 23%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Thu Feb 24 23:07:25 2022
+# Finished Make data base on Fri Mar  4 10:22:04 2022
 
  
