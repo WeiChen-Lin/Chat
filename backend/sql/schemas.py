@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 class UserBase(BaseModel):
     username: str
+    token: Optional[str] = None
 
 
 class UserCreate(UserBase):
@@ -15,6 +16,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     username: str
+    token: Optional[str] = None
 
     class Config:
         orm_mode = True

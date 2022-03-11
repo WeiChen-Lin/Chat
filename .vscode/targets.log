@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Mar  4 10:22:04 2022
+# Make data base, printed on Fri Mar 11 09:55:07 2022
 
 # Variables
 
@@ -73,21 +73,17 @@ MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
-# environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 CLUTTER_IM_MODULE = xim
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-41d12e91-b1b6-488c-a1aa-edd4f034a4d2.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-123bcf9a-2dd9-43cb-9cf8-d41ae196951d.sock
 # environment
 LC_NAME = lzh_TW
 # environment
 VSCODE_CWD = /home/wcl/Desktop/ReactPractice/chat
-# environment
-GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -97,15 +93,13 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/wcl-nb:@/tmp/.ICE-unix/3002,unix/wcl-nb:/tmp/.ICE-unix/3002
+SESSION_MANAGER = local/wcl-nb:@/tmp/.ICE-unix/4059,unix/wcl-nb:/tmp/.ICE-unix/4059
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 VIRTUAL_ENV = /home/wcl/Desktop/ReactPractice/chat/chat
 # environment
 TEXTDOMAIN = im-config
-# environment
-GOPATH = /home/wcl/go
 # environment
 NVM_BIN = /home/wcl/.nvm/versions/node/v17.1.0/bin
 # environment
@@ -141,13 +135,13 @@ PWD = /home/wcl/Desktop/ReactPractice/chat
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 3080
+SSH_AGENT_PID = 4137
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-GOMODCACHE = /home/wcl/go/pkg/mod
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
 # environment
 HOME = /home/wcl
 # environment
@@ -229,14 +223,15 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = lzh_TW
 # environment
+LC_IDENTIFICATION = lzh_TW
+# environment
 S_COLORS = auto
 # environment
 QT_ACCESSIBILITY = 1
 # environment
-DESKTOP_AUTOSTART_ID = 1081ebba5831a7c293164635836526643100000030020007
-# environment
 DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
 # environment
+ 
 TEXTDOMAINDIR = /usr/share/locale/
 # default
 MAKEFILES := 
@@ -263,14 +258,16 @@ PAGER = less
 LC_ALL = C
 # environment
 QT4_IM_MODULE = xim
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # makefile (from 'Makefile', line 1)
 current_site := /home/wcl/Desktop/ReactPractice/chat
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/f6fbe605_7a9e_4377_ba92_4f6c365cbf93
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/f1cfb519_b155_4277_b84b_26dedd9237b1
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.86
+GNOME_TERMINAL_SERVICE = :1.82
 # default
 SUFFIXES := 
 # environment
@@ -280,20 +277,19 @@ WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
-LC_IDENTIFICATION = lzh_TW
+GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
 # environment
 LC_ADDRESS = lzh_TW
 # environment
- 
 LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 7029
+VSCODE_PID = 6438
 # variable set hash-table stats:
-# Load=138/1024=13%, Rehash=0, Collisions=25/166=15%
+# Load=136/1024=13%, Rehash=0, Collisions=25/164=15%
 
 # Pattern-specific Variable Values
 
@@ -353,6 +349,6 @@ run-fastapi:
 # strcache performance: lookups = 21 / hit rate = 23%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Fri Mar  4 10:22:04 2022
+# Finished Make data base on Fri Mar 11 09:55:07 2022
 
  

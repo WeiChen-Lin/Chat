@@ -5,19 +5,20 @@ import IndexPage from "./components/logPage";
 import "./index.css";
 import "@material-tailwind/react/tailwind.css";
 
-const domain_name = "http://localhost:8000";
+// const domain_name = "http://localhost:8000";
 
 function App() {
-  const isLogin = localStorage.getItem("chatbox");
-  fetch(domain_name + "/auth", {
-    method: "POST",
-  })
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      console.log(res);
-    });
+  const isLogin = localStorage.getItem("access-token");
+  // fetch(domain_name + "/login", {
+  //   method: "POST",
+  // })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((res) => {
+  //     console.log(res);
+  //   });
+
   if (isLogin) {
     return <Container />;
   } else {

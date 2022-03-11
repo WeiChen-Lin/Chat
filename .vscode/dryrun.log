@@ -1,6 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/wcl/Desktop/ReactPractice/chat'
- 
 docker build -t fastapi .
 docker run -it -v /home/wcl/Desktop/ReactPractice/chat/backend:/app -p 8000:8000 fastapi
 make: Leaving directory '/home/wcl/Desktop/ReactPractice/chat'
