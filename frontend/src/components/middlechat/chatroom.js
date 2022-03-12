@@ -1,8 +1,8 @@
-import React from "react";
-import Chatinfo from "./chatroom/chatinfo";
-import Mymsg from "./chatroom/mymsg";
-import Osmsg from "./chatroom/osmsg";
-import DownButs from "./chatroom/downbuts";
+import React from 'react';
+import Chatinfo from './chatroom/chatinfo';
+import Mymsg from './chatroom/mymsg';
+import Osmsg from './chatroom/osmsg';
+import DownButs from './chatroom/downbuts';
 
 class Chatroom extends React.Component {
   constructor(props) {
@@ -10,49 +10,49 @@ class Chatroom extends React.Component {
 
     this.state = {
       chatinfo: {
-        name: "Emma",
+        name: 'Emma',
         isOnline: false,
       },
       msgs: [
         {
           order: 1,
-          osmsg: "hi",
-          time: "18:04",
+          osmsg: 'hi',
+          time: '18:04',
         },
         {
           order: 2,
-          mymsg: "hello",
-          time: "18:04",
+          mymsg: 'hello',
+          time: '18:04',
         },
         {
           order: 3,
-          osmsg: "hi",
-          time: "18:04",
+          osmsg: 'hi',
+          time: '18:04',
         },
         {
           order: 4,
-          mymsg: "hello",
-          time: "18:04",
+          mymsg: 'hello',
+          time: '18:04',
         },
         {
           order: 5,
-          osmsg: "hi",
-          time: "18:04",
+          osmsg: 'hi',
+          time: '18:04',
         },
         {
           order: 6,
-          mymsg: "hello",
-          time: "18:04",
+          mymsg: 'hello',
+          time: '18:04',
         },
         {
           order: 7,
-          osmsg: "hi",
-          time: "18:04",
+          osmsg: 'hi',
+          time: '18:04',
         },
         {
           order: 8,
-          mymsg: "hello",
-          time: "18:04",
+          mymsg: 'hello',
+          time: '18:04',
         },
       ],
     };
@@ -68,13 +68,10 @@ class Chatroom extends React.Component {
     });
 
     return (
-      <div class="w-full flex flex-col h-full justify-between border-x">
-        <Chatinfo
-          name={this.state.chatinfo.name}
-          isOnline={this.state.chatinfo.isOnline}
-        />
-        <div class="relative w-full p-6 overflow-y-auto h-full">
-          <ul class="space-y-2">{msgs}</ul>
+      <div className="w-full flex flex-col h-full justify-between border-x">
+        <Chatinfo name={this.state.chatinfo.name} isOnline={this.state.chatinfo.isOnline} />
+        <div className="relative w-full p-6 overflow-y-auto h-full">
+          <ul className="space-y-2">{msgs}</ul>
         </div>
         <DownButs />
       </div>

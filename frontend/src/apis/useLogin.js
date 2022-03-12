@@ -38,9 +38,8 @@ const useLogin = () => {
 
       return response;
     } catch (err) {
-      console.log(err);
       setAlertError('帳號或密碼錯誤');
-      return;
+      return err;
     }
 
     // await fetch(domain + AuthRoute, {
