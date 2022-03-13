@@ -29,9 +29,7 @@ export default function IndexPage() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <img className="mx-auto h-12 w-auto" src={chat} alt="Workflow" />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Start anonymous chat
-          </h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Start chat</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <input type="hidden" name="remember" value="true" />
