@@ -7,7 +7,7 @@ import React from 'react';
 export default function Container() {
   return (
     <div>
-      <div className="absolute left-0 pt-[7%]">
+      <div className="absolute left-0 pt-[10%]">
         <Profile />
       </div>
       <div className="container mx-auto h-screen">
