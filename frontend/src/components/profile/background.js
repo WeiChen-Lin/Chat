@@ -1,4 +1,4 @@
-export default function Backgroud(props) {
+export default function Background(props) {
   const { isOpen, setIsOpen } = props;
 
   return (
