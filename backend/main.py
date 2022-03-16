@@ -45,8 +45,6 @@ async def login(chatToken: Optional[str] = Cookie(None)):
     if not chatToken:
         raise HTTPException(status_code=401, detail="not autherized")
 
-    return {"test": chatToken}
-
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()

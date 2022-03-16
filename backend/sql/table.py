@@ -31,9 +31,9 @@ class Friendship(Base):
 
     id = Column(Integer, primary_key=True)
     user_uuid_from = Column(
-        String, ForeignKey('users.uuid'), index=True, nullable=False
+        String, ForeignKey("users.uuid"), index=True, nullable=False
     )
-    user_uuid_to = Column(String, ForeignKey('users.uuid'), nullable=False)
+    user_uuid_to = Column(String, ForeignKey("users.uuid"), nullable=False)
     checked = Column(Boolean, index=True, default=False)
 
     users = relationship("User", back_populates="friendship")
@@ -44,9 +44,9 @@ class Message(Base):
 
     id = Column(Integer, primary_key=True)
     user_uuid_from = Column(
-        String, ForeignKey('users.uuid'), index=True, nullable=False
+        String, ForeignKey("users.uuid"), index=True, nullable=False
     )
-    user_uuid_to = Column(String, ForeignKey('users.uuid'), nullable=False)
+    user_uuid_to = Column(String, ForeignKey("users.uuid"), nullable=False)
     message = Column(Text, nullable=False)
     time = Column(DateTime(timezone=True), server_default=func.now())
 
