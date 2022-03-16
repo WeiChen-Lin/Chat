@@ -1,6 +1,7 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from operator import index
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
-
+from sqlalchemy.sql import func
 from .database import Base
 
 
@@ -14,6 +15,37 @@ Base.to_dict = to_dict
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
+    id = Column(Integer, primary_key=True)
+    uuid = Column(String, unique=True, index=True, nullable=False)
+    username = Column(String, unique=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+
+    friendship = relationship("Friendship", back_populates="users")
+    message = relationship("Message", back_populates="users")
+
+
+class Friendship(Base):
+    __tablename__ = "friends"
+
+    id = Column(Integer, primary_key=True)
+    user_uuid_from = Column(
+        String, ForeignKey('users.uuid'), index=True, nullable=False
+    )
+    user_uuid_to = Column(String, ForeignKey('users.uuid'), nullable=False)
+    checked = Column(Boolean, index=True, default=False)
+
+    users = relationship("User", back_populates="friendship")
+
+
+class Message(Base):
+    __tablename__ = "message"
+
+    id = Column(Integer, primary_key=True)
+    user_uuid_from = Column(
+        String, ForeignKey('users.uuid'), index=True, nullable=False
+    )
+    user_uuid_to = Column(String, ForeignKey('users.uuid'), nullable=False)
+    message = Column(Text, nullable=False)
+    time = Column(DateTime(timezone=True), server_default=func.now())
+
+    users = relationship("User", back_populates="message")

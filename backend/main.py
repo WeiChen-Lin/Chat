@@ -33,6 +33,13 @@ def get_db():
         db.close()
 
 
+"""
+目前route會集中在一起寫
+未來會照功能做router的區分
+"""
+# 1. Login相關 api
+
+
 @app.get("api/login")
 async def login(chatToken: Optional[str] = Cookie(None)):
     if not chatToken:
@@ -67,7 +74,9 @@ async def create_user(
                 key="chat-remember",
                 value="True",
                 max_age=604800,
-                samesite='none',secure=True, httponly=True
+                samesite="none",
+                secure=True,
+                httponly=True,
             )
         return {
             "status": "login",
@@ -87,7 +96,9 @@ async def create_user(
                 key="chat-remember",
                 value="True",
                 max_age=604800,
-                samesite='none',secure=True, httponly=True
+                samesite="none",
+                secure=True,
+                httponly=True,
             )
         return {
             "status": "New User!",
@@ -95,3 +106,9 @@ async def create_user(
                 {"id": created_user["id"], "username": created_user["username"]}
             ),
         }
+
+
+# 2. 個人資料相關 api
+@app.post("/api/profile")
+async def create_userinfo():
+    return "ok"
