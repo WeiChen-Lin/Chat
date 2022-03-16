@@ -19,6 +19,8 @@ class User(Base):
     uuid = Column(String, unique=True, index=True, nullable=False)
     username = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
+    imageUrl = Column(Text)
+    description = Column(Text)
 
     friendship = relationship("Friendship", back_populates="users")
     message = relationship("Message", back_populates="users")
