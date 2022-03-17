@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Container from './components/container';
 import IndexPage from './components/logPage';
@@ -18,11 +18,6 @@ function App() {
   //   .then((res) => {
   //     console.log(res);
   //   });
-
-  if (isLogin) {
-    return <Container />;
-  } else {
-    return <IndexPage />;
-  }
 }
+
 ReactDOM.render(<App />, document.getElementById('root'));

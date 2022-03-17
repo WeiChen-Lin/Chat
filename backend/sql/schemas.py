@@ -9,6 +9,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
+    uuid: Optional[str] = None
     password: str
     remember: bool
 

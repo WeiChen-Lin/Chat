@@ -1,4 +1,3 @@
-from operator import index
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -22,8 +21,8 @@ class User(Base):
     imageUrl = Column(Text)
     description = Column(Text)
 
-    friendship = relationship("Friendship", back_populates="users")
-    message = relationship("Message", back_populates="users")
+    # friendship = relationship("Friendship", back_populates="users")
+    # message = relationship("Message", back_populates="users")
 
 
 class Friendship(Base):
@@ -36,7 +35,8 @@ class Friendship(Base):
     user_uuid_to = Column(String, ForeignKey("users.uuid"), nullable=False)
     checked = Column(Boolean, index=True, default=False)
 
-    users = relationship("User", back_populates="friendship")
+    userfrom = relationship("User", foreign_keys=[user_uuid_from])
+    userto = relationship("User", foreign_keys=[user_uuid_to])
 
 
 class Message(Base):
@@ -50,4 +50,5 @@ class Message(Base):
     message = Column(Text, nullable=False)
     time = Column(DateTime(timezone=True), server_default=func.now())
 
-    users = relationship("User", back_populates="message")
+    userfrom = relationship("User", foreign_keys=[user_uuid_from])
+    userto = relationship("User", foreign_keys=[user_uuid_to])

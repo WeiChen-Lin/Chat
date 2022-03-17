@@ -1,11 +1,14 @@
 from datetime import datetime, timedelta
 from typing import List, Optional
+from urllib.request import Request
+
 from jose import JWTError, jwt
-from fastapi import Depends, FastAPI, HTTPException, Cookie, Response
+from fastapi import Depends, FastAPI, HTTPException, Cookie, Header, Response, Request
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from sql import crud, table, schemas
 from sql.database import SessionLocal, engine
+from router import profile
 
 table.Base.metadata.create_all(bind=engine)
 
@@ -24,6 +27,8 @@ app.add_middleware(
 JWT_SECRET_KEY = "69a55a371d0e0cdda9a582fb774f767b1940a54089e2d2b7392d9c8a2a6f3a74"
 ALGORITHM = "HS256"
 
+app.include_router(profile.router)
+
 # Dependency
 def get_db():
     db = SessionLocal()
@@ -39,11 +44,43 @@ def get_db():
 """
 # 1. Login相關 api
 
+"""
+進到首頁後
 
-@app.get("api/login")
-async def login(chatToken: Optional[str] = Cookie(None)):
-    if not chatToken:
-        raise HTTPException(status_code=401, detail="not autherized")
+1. 是否含有chat-remember cookie
+    -> 有的話以 get打 api/login，帶上 localstorage的token，並且驗證JWT
+
+"""
+
+
+def verify_JWT_header(req: Request):
+    token = req.headers.get("Authorization", False)
+    if not token:
+        raise HTTPException(status_code=401, detail="Invalid Authorization (Header Loss)")
+
+    return token
+
+
+@app.get("/api/login")
+async def login(req: Request, db: Session = Depends(get_db)):
+
+    token = verify_JWT_header(req)
+    print(token.split(" ")[1])
+    try:
+        payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])
+        username = payload.get('username')
+        uuid = payload.get('id')
+        if not username or not uuid:
+            raise HTTPException(status_code=401, detail="Invalid Authorization (info loss)")
+        
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")
+
+    userinfo = crud.get_user_for_auth(db, uuid, username)
+    if not userinfo:
+        raise HTTPException(status_code=401, detail="Invalid Authorization (no this user)")
+
+    return {"status": "Authorization"}
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
@@ -79,7 +116,7 @@ async def create_user(
         return {
             "status": "login",
             "access-token": create_access_token(
-                {"id": user_data["id"], "username": user_data["username"]}
+                {"id": user_data["uuid"], "username": user_data["username"]}
             ),
         }
 
@@ -101,12 +138,6 @@ async def create_user(
         return {
             "status": "New User!",
             "access-token": create_access_token(
-                {"id": created_user["id"], "username": created_user["username"]}
+                {"id": created_user["uuid"], "username": created_user["username"]}
             ),
         }
-
-
-# 2. 個人資料相關 api
-@app.post("/api/profile")
-async def create_userinfo():
-    return "ok"
