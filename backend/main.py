@@ -56,7 +56,9 @@ def get_db():
 def verify_JWT_header(req: Request):
     token = req.headers.get("Authorization", False)
     if not token:
-        raise HTTPException(status_code=401, detail="Invalid Authorization (Header Loss)")
+        raise HTTPException(
+            status_code=401, detail="Invalid Authorization (Header Loss)"
+        )
 
     return token
 
@@ -65,20 +67,23 @@ def verify_JWT_header(req: Request):
 async def login(req: Request, db: Session = Depends(get_db)):
 
     token = verify_JWT_header(req)
-    print(token.split(" ")[1])
     try:
         payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])
         username = payload.get('username')
         uuid = payload.get('id')
         if not username or not uuid:
-            raise HTTPException(status_code=401, detail="Invalid Authorization (info loss)")
-        
+            raise HTTPException(
+                status_code=401, detail="Invalid Authorization (info loss)"
+            )
+
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")
 
     userinfo = crud.get_user_for_auth(db, uuid, username)
     if not userinfo:
-        raise HTTPException(status_code=401, detail="Invalid Authorization (no this user)")
+        raise HTTPException(
+            status_code=401, detail="Invalid Authorization (no this user)"
+        )
 
     return {"status": "Authorization"}
 
@@ -88,7 +93,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(minutes=15)
+        expire = datetime.utcnow() + timedelta(days=7)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt

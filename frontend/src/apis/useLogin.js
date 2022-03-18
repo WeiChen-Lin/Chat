@@ -14,7 +14,7 @@ const useLogin = () => {
     setAlertLoadingStart();
 
     if (checkUserinfo(userinfo)) {
-      setAlertError('帳號或密碼錯誤');
+      setAlertError('請填入正確的帳號密碼');
       return;
     }
 
@@ -28,41 +28,24 @@ const useLogin = () => {
         }),
         credentials: 'include',
       });
-
+      const status = {};
       if (response.status === 200) {
         const result = await response.json();
         localStorage.setItem('access-token', result['access-token']);
+        status.status = true;
+      } else {
+        setAlertError('帳號或密碼錯誤');
+        status.status = false;
       }
 
       setAlertLoadingStop();
 
-      return response;
+      return status;
     } catch (err) {
       setAlertError('帳號或密碼錯誤');
+
       return err;
     }
-
-    // await fetch(domain + AuthRoute, {
-    //   method: 'POST',
-    //   body: JSON.stringify(userinfo),
-    //   headers: new Headers({
-    //     'Access-Control-Allow-Origin': 'http://localhost:3000',
-    //     'Content-Type': 'application/json',
-    //   }),
-    //   credentials: 'include',
-    // })
-    //   .then((res) => {
-    //     if (!res.ok) return;
-    //     return res.json();
-    //   })
-    //   .catch((error) => {
-    //     setAlertError('帳號或密碼錯誤');
-    //     return error;
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     setAlertLoadingStop();
-    //   });
   };
 
   return { loading, severity, message, login };

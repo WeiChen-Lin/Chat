@@ -3,7 +3,11 @@ import { useState } from 'react';
 import chat from './../img/chat.png';
 import useLogin from '../apis/useLogin';
 
-export default function IndexPage() {
+export default function IndexPage(props) {
+  const { handleIsLogin } = props;
+
+  // handleIsLogin(false);
+
   const [userinfo, setUserinfo] = useState({
     username: '',
     password: '',
@@ -21,7 +25,8 @@ export default function IndexPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(userinfo);
+    const status = login(userinfo);
+    handleIsLogin(status.status);
   };
 
   return (
