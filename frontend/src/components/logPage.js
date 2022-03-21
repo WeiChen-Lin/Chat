@@ -1,12 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import chat from './../img/chat.png';
-import useLogin from '../apis/useLogin';
+import useLogin from '../hooks/useLogin';
 
 export default function IndexPage(props) {
   const { handleIsLogin } = props;
-
-  // handleIsLogin(false);
 
   const [userinfo, setUserinfo] = useState({
     username: '',
@@ -23,9 +21,9 @@ export default function IndexPage(props) {
     });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const status = login(userinfo);
+    const status = await login(userinfo);
     handleIsLogin(status.status);
   };
 

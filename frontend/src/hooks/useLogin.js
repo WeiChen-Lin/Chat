@@ -37,7 +37,6 @@ const useLogin = () => {
         setAlertError('帳號或密碼錯誤');
         status.status = false;
       }
-
       setAlertLoadingStop();
 
       return status;

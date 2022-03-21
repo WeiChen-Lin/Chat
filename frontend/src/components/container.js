@@ -4,8 +4,7 @@ import Members from './members/members';
 import Profile from './profile/profile';
 import React from 'react';
 
-export default function Container(props) {
-  const { handleIsLogin } = props;
+export default function Container() {
   return (
     <div>
       <div className="absolute left-0 pt-[10%]">

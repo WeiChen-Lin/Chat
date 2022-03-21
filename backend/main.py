@@ -21,7 +21,7 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT"],
-    allow_headers=["Content-Type", "Set-Cookie", "access-control-allow-origin"],
+    allow_headers=["Content-Type", "Set-Cookie", "access-control-allow-origin", "Authorization"],
 )
 
 JWT_SECRET_KEY = "69a55a371d0e0cdda9a582fb774f767b1940a54089e2d2b7392d9c8a2a6f3a74"
@@ -116,7 +116,6 @@ async def create_user(
                 max_age=604800,
                 samesite="none",
                 secure=True,
-                httponly=True,
             )
         return {
             "status": "login",
@@ -138,7 +137,6 @@ async def create_user(
                 max_age=604800,
                 samesite="none",
                 secure=True,
-                httponly=True,
             )
         return {
             "status": "New User!",
