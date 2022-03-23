@@ -8,10 +8,8 @@ const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 
 export default function ProfileCard(props) {
-  const { isOpen, handleEdit } = props;
-  const [loading, setLoading] = useState(true);
-  const { shot, name, introduction, isEdit } = props.profile;
-
+  const { isOpen, profile, handleEdit } = props;
+  const [loading, setLoading] = useState(false);
   return (
     <div
       className={`bg-white shadow-lg rounded-r-lg overflow-hidden z-30 transition-all duration-300 ${
@@ -22,10 +20,19 @@ export default function ProfileCard(props) {
         <ProfileLoading />
       ) : (
         <div>
-          <img className="w-full h-56 object-cover object-center" src={shot} alt="avatar" />
+          {profile.imageurl ? (
+            <img
+              className="w-full h-56 object-cover object-center"
+              src={profile.imageurl}
+              alt="avatar"
+            />
+          ) : (
+            <ImgBackground />
+          )}
+          {/* <img className="w-full h-56 object-cover object-center" src={profile.shot} alt="avatar" /> */}
           <div className="py-4 px-6">
             <div className="flex">
-              <h1 className="text-xl font-semibold text-gray-800 w-3/4">{name}</h1>
+              <h1 className="text-xl font-semibold text-gray-800 w-3/4">{profile.username}</h1>
               <label className={`w-8 h-8 mr-4 ${activeButton}`}>
                 <img src={uploadImage} alt="upload"></img>
                 <input type="file" className="hidden" />
@@ -34,10 +41,10 @@ export default function ProfileCard(props) {
                 <img src={editImage} alt="edit"></img>
               </div>
             </div>
-            {isEdit ? (
-              <EditIntroduction introduction={introduction} handleEdit={handleEdit} />
+            {profile.isEdit ? (
+              <EditIntroduction introduction={profile.description} handleEdit={handleEdit} />
             ) : (
-              <Introduction introduction={introduction} />
+              <Introduction introduction={profile.description} />
             )}
           </div>
         </div>
@@ -105,4 +112,8 @@ function ProfileLoading() {
       <div className="pt-2">Loading...</div>
     </div>
   );
+}
+
+function ImgBackground() {
+  return <div className="w-full h-56 bg-gradient-to-tr from-cyan-300 to-blue-400"></div>;
 }

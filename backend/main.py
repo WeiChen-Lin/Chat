@@ -21,7 +21,12 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT"],
-    allow_headers=["Content-Type", "Set-Cookie", "access-control-allow-origin", "Authorization"],
+    allow_headers=[
+        "Content-Type",
+        "Set-Cookie",
+        "access-control-allow-origin",
+        "Authorization",
+    ],
 )
 
 JWT_SECRET_KEY = "69a55a371d0e0cdda9a582fb774f767b1940a54089e2d2b7392d9c8a2a6f3a74"
@@ -69,8 +74,8 @@ async def login(req: Request, db: Session = Depends(get_db)):
     token = verify_JWT_header(req)
     try:
         payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])
-        username = payload.get('username')
-        uuid = payload.get('id')
+        username = payload.get("username")
+        uuid = payload.get("id")
         if not username or not uuid:
             raise HTTPException(
                 status_code=401, detail="Invalid Authorization (info loss)"
@@ -85,7 +90,16 @@ async def login(req: Request, db: Session = Depends(get_db)):
             status_code=401, detail="Invalid Authorization (no this user)"
         )
 
-    return {"status": "Authorization"}
+    user_data = userinfo.to_dict()
+
+    return {
+        "status": "Authorization",
+        "userinfo": {
+            "username": user_data["username"],
+            "imageurl": user_data["imageurl"],
+            "description": user_data["description"],
+        },
+    }
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
@@ -122,6 +136,11 @@ async def create_user(
             "access-token": create_access_token(
                 {"id": user_data["uuid"], "username": user_data["username"]}
             ),
+            "userinfo": {
+                "username": user_data["username"],
+                "imageurl": user_data["imageurl"],
+                "description": user_data["description"],
+            },
         }
 
     elif db_user["status"] == "incorrect":
@@ -143,4 +162,9 @@ async def create_user(
             "access-token": create_access_token(
                 {"id": created_user["uuid"], "username": created_user["username"]}
             ),
+            "userinfo": {
+                "username": created_user["username"],
+                "imageurl": created_user["imageurl"],
+                "description": created_user["description"],
+            },
         }

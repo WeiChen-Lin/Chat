@@ -4,7 +4,7 @@ import chat from './../img/chat.png';
 import useLogin from '../hooks/useLogin';
 
 export default function IndexPage(props) {
-  const { handleIsLogin } = props;
+  const { handleIsLogin, setProfile } = props;
 
   const [userinfo, setUserinfo] = useState({
     username: '',
@@ -25,6 +25,10 @@ export default function IndexPage(props) {
     e.preventDefault();
     const status = await login(userinfo);
     handleIsLogin(status.status);
+    if (status.status) {
+      const userinfo = status.userinfo;
+      setProfile({ ...userinfo });
+    }
   };
 
   return (

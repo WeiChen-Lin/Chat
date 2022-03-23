@@ -9,11 +9,21 @@ import '@material-tailwind/react/tailwind.css';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState({
+    username: '',
+    imageurl: '',
+    description: '',
+  });
   useEffect(() => {
     const waitForCheckCookie = async () => {
       const loginChecker = await getUserByCookie();
-      setIsLogin(loginChecker);
+      const status = loginChecker.status;
+      const userinfo = loginChecker.userinfo;
+      setIsLogin(status);
       setLoading(false);
+      if (status) {
+        setProfile({ ...userinfo });
+      }
     };
     waitForCheckCookie();
   }, []);
@@ -28,9 +38,9 @@ function App() {
         {loading ? (
           <div></div>
         ) : isLogin ? (
-          <Container />
+          <Container profile={profile} />
         ) : (
-          <IndexPage handleIsLogin={handleIsLogin} />
+          <IndexPage handleIsLogin={handleIsLogin} setProfile={setProfile} />
         )}
       </div>
     </div>

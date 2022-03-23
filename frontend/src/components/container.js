@@ -4,11 +4,12 @@ import Members from './members/members';
 import Profile from './profile/profile';
 import React from 'react';
 
-export default function Container() {
+export default function Container(props) {
+  const { profile } = props;
   return (
     <div>
       <div className="absolute left-0 pt-[10%]">
-        <Profile />
+        <Profile profile={profile} />
       </div>
       <div className="container mx-auto h-screen">
         <div className="min-w-full border-x rounded lg:grid lg:grid-cols-4 border-y-0 z-0">

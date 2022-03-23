@@ -42,8 +42,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
     return db_user
 
+
 def get_user_for_auth(db: Session, uuid: str, username: str):
 
-    userinfo = db.query(table.User).filter(table.User.username == username and table.User.uuid == uuid).first()
+    userinfo = (
+        db.query(table.User)
+        .filter(table.User.username == username and table.User.uuid == uuid)
+        .first()
+    )
 
     return userinfo

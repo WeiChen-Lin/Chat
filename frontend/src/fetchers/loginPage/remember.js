@@ -8,17 +8,20 @@ const getChatCookie = (name) => {
 
 const getUserByCookie = async () => {
   const rememberChecker = getChatCookie('chat-remember') === 'True';
-  if (!rememberChecker) return false;
+  if (!rememberChecker) return { status: false };
   try {
     const result = await fetch(domain + AuthRoute, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,
       },
     });
-    if (result.status === 200) return true;
-    return false;
+    if (result.status === 200) {
+      const response = await result.json();
+      return { status: true, userinfo: response.userinfo };
+    }
+    return { status: false };
   } catch {
-    return false;
+    return { status: false };
   }
 };
 
