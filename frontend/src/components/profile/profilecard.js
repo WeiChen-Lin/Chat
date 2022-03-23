@@ -8,12 +8,16 @@ const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 
 export default function ProfileCard(props) {
-  const { isOpen, profile, handleEdit } = props;
+  const { isOpen, profile, isEdit, setIsEdit } = props;
   const [loading, setLoading] = useState(false);
+
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
   return (
     <div
       className={`bg-white shadow-lg rounded-r-lg overflow-hidden z-30 transition-all duration-300 ${
-        isOpen ? 'w-0' : 'w-96'
+        isOpen ? 'w-96' : 'w-0'
       }`}
     >
       {loading ? (
@@ -29,7 +33,6 @@ export default function ProfileCard(props) {
           ) : (
             <ImgBackground />
           )}
-          {/* <img className="w-full h-56 object-cover object-center" src={profile.shot} alt="avatar" /> */}
           <div className="py-4 px-6">
             <div className="flex">
               <h1 className="text-xl font-semibold text-gray-800 w-3/4">{profile.username}</h1>
@@ -41,7 +44,7 @@ export default function ProfileCard(props) {
                 <img src={editImage} alt="edit"></img>
               </div>
             </div>
-            {profile.isEdit ? (
+            {isEdit ? (
               <EditIntroduction introduction={profile.description} handleEdit={handleEdit} />
             ) : (
               <Introduction introduction={profile.description} />
