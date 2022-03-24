@@ -6,7 +6,7 @@ from jose import JWTError, jwt
 from fastapi import Depends, FastAPI, HTTPException, Cookie, Header, Response, Request
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
-from sql import crud, table, schemas
+from sql import table, schemas, user_crud
 from sql.database import SessionLocal, engine
 from router import profile
 
@@ -32,7 +32,7 @@ app.add_middleware(
 JWT_SECRET_KEY = "69a55a371d0e0cdda9a582fb774f767b1940a54089e2d2b7392d9c8a2a6f3a74"
 ALGORITHM = "HS256"
 
-app.include_router(profile.router)
+app.include_router(profile.router, prefix="/api/profile")
 
 # Dependency
 def get_db():
@@ -84,7 +84,7 @@ async def login(req: Request, db: Session = Depends(get_db)):
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")
 
-    userinfo = crud.get_user_for_auth(db, uuid, username)
+    userinfo = user_crud.get_user_for_auth(db, uuid, username)
     if not userinfo:
         raise HTTPException(
             status_code=401, detail="Invalid Authorization (no this user)"
@@ -117,7 +117,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 async def create_user(
     response: Response, user: schemas.UserCreate, db: Session = Depends(get_db)
 ):
-    db_user = crud.get_user_by_username(
+    db_user = user_crud.get_user_by_username(
         db, username=user.username, password=user.password
     )
     # 1. 確認有在db後，且密碼正確, 核發JWT token並登入
@@ -148,7 +148,7 @@ async def create_user(
 
     else:
         # 2. 沒在db, 將密碼加密後送進db, 並且核發JWT token
-        created_user = crud.create_user(db=db, user=user).to_dict()
+        created_user = user_crud.create_user(db=db, user=user).to_dict()
         if user.remember:
             response.set_cookie(
                 key="chat-remember",

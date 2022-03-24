@@ -8,9 +8,8 @@ from fastapi import (
     Request,
     APIRouter,
 )
-from .utils import verify_JWT_header, JWT_SECRET_KEY, ALGORITHM
-from sql import crud
-from jose import JWTError, jwt
+from .utils import verify_JWT_header, Get_JWT_info, JWT_SECRET_KEY, ALGORITHM
+from sql import profile_crud
 from sqlalchemy.orm import Session
 from sql.database import SessionLocal, engine
 
@@ -25,28 +24,9 @@ def get_db():
         db.close()
 
 
-# 由一開始登入就送使用者資料就好
-
-# @router.get("/")
-# async def getPersonalProfile(req: Request, db: Session = Depends(get_db)):
-#     token = verify_JWT_header(req)
-#     try:
-#         payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])
-#         username = payload.get('username')
-#         uuid = payload.get('id')
-#         if not username or not uuid:
-#             raise HTTPException(
-#                 status_code=401, detail="Invalid Authorization (info loss)"
-#             )
-
-#     except JWTError:
-#         raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")
-
-#     userinfo = crud.get_user_for_auth(db, uuid, username)
-
-#     if not userinfo:
-#         raise HTTPException(
-#             status_code=401, detail="Invalid Authorization (no this user)"
-#         )
-
-#     return {"status": "Authorization", "userifo": userinfo.to_dict()}
+@router.post("/")
+async def editIntroduction(req: Request, db: Session = Depends(get_db)):
+    uuid, username = Get_JWT_info(req)
+    body = await req.json()
+    profile_crud.edit_introduction(db, uuid, username, body['description'])
+    return "ok"

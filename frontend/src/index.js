@@ -38,7 +38,7 @@ function App() {
         {loading ? (
           <div></div>
         ) : isLogin ? (
-          <Container profile={profile} />
+          <Container profile={profile} setProfile={setProfile} />
         ) : (
           <IndexPage handleIsLogin={handleIsLogin} setProfile={setProfile} />
         )}
