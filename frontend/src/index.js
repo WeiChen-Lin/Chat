@@ -12,7 +12,7 @@ function App() {
   const [profile, setProfile] = useState({
     username: '',
     imageurl: '',
-    description: '',
+    introduction: '',
   });
   useEffect(() => {
     const waitForCheckCookie = async () => {

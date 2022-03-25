@@ -45,9 +45,9 @@ export default function ProfileCard(props) {
               </div>
             </div>
             {isEdit ? (
-              <EditIntroduction introduction={profile.description} handleEdit={handleEdit} />
+              <EditIntroduction introduction={profile.introduction} handleEdit={handleEdit} />
             ) : (
-              <Introduction introduction={profile.description} />
+              <Introduction introduction={profile.introduction} />
             )}
           </div>
         </div>
