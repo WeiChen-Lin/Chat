@@ -28,5 +28,5 @@ def get_db():
 async def editIntroduction(req: Request, db: Session = Depends(get_db)):
     uuid, username = Get_JWT_info(req)
     body = await req.json()
-    profile_crud.edit_introduction(db, uuid, username, body['description'])
+    profile_crud.edit_introduction(db, uuid, username, body['introduction'])
     return "ok"

@@ -97,7 +97,7 @@ async def login(req: Request, db: Session = Depends(get_db)):
         "userinfo": {
             "username": user_data["username"],
             "imageurl": user_data["imageurl"],
-            "description": user_data["description"],
+            "introduction": user_data["introduction"],
         },
     }
 
@@ -139,7 +139,7 @@ async def create_user(
             "userinfo": {
                 "username": user_data["username"],
                 "imageurl": user_data["imageurl"],
-                "description": user_data["description"],
+                "introduction": user_data["introduction"],
             },
         }
 
@@ -165,6 +165,6 @@ async def create_user(
             "userinfo": {
                 "username": created_user["username"],
                 "imageurl": created_user["imageurl"],
-                "description": created_user["description"],
+                "introduction": created_user["introduction"],
             },
         }

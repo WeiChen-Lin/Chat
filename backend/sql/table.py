@@ -19,7 +19,7 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     imageurl = Column(Text)
-    description = Column(Text)
+    introduction = Column(Text)
 
     # friendship = relationship("Friendship", back_populates="users")
     # message = relationship("Message", back_populates="users")
