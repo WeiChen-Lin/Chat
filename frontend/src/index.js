@@ -9,11 +9,6 @@ import '@material-tailwind/react/tailwind.css';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
-  // const [profile, setProfile] = useState({
-  //   username: '',
-  //   imageurl: '',
-  //   introduction: '',
-  // });
   useEffect(() => {
     const waitForCheckCookie = async () => {
       const loginChecker = await getUserByCookie();
