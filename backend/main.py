@@ -94,11 +94,6 @@ async def login(req: Request, db: Session = Depends(get_db)):
 
     return {
         "status": "Authorization",
-        "userinfo": {
-            "username": user_data["username"],
-            "imageurl": user_data["imageurl"],
-            "introduction": user_data["introduction"],
-        },
     }
 
 
@@ -136,11 +131,6 @@ async def create_user(
             "access-token": create_access_token(
                 {"id": user_data["uuid"], "username": user_data["username"]}
             ),
-            "userinfo": {
-                "username": user_data["username"],
-                "imageurl": user_data["imageurl"],
-                "introduction": user_data["introduction"],
-            },
         }
 
     elif db_user["status"] == "incorrect":
@@ -162,9 +152,4 @@ async def create_user(
             "access-token": create_access_token(
                 {"id": created_user["uuid"], "username": created_user["username"]}
             ),
-            "userinfo": {
-                "username": created_user["username"],
-                "imageurl": created_user["imageurl"],
-                "introduction": created_user["introduction"],
-            },
         }
