@@ -36,10 +36,8 @@ const getUserProfile = async () => {
       const profile = await result.json();
       return profile;
     }
-    console.log('false');
     return false;
   } catch {
-    console.log('false');
     return false;
   }
 };

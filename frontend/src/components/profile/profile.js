@@ -5,7 +5,6 @@ import Background from './background';
 export default function Profile(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const { profile, setProfile } = props;
 
   return (
     <div className="flex">
