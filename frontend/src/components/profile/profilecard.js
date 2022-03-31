@@ -4,16 +4,24 @@ import editImage from '../../img/edit.png';
 import checkImage from '../../img/check.png';
 import cancelImage from '../../img/cancel.png';
 
+const profile = {
+  username: 'Emma',
+  introduction: 'Test for frontend',
+  imageurl: 'https://cdn.pixabay.com/photo/2016/06/15/15/25/loudspeaker-1459128__340.png',
+};
+
 const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 
 export default function ProfileCard(props) {
-  const { isOpen, profile, isEdit, setIsEdit } = props;
+  const { isOpen, isEdit, setIsEdit } = props;
   const [loading, setLoading] = useState(false);
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
   };
+
+  const handleModifyIntroduction = () => {};
   return (
     <div
       className={`bg-white shadow-lg rounded-r-lg overflow-hidden z-30 transition-all duration-300 ${

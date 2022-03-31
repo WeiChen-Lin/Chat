@@ -10,13 +10,7 @@ export default function Profile(props) {
   return (
     <div className="flex">
       <Background isOpen={isOpen} setIsOpen={setIsOpen} isEdit={isEdit} setIsEdit={setIsEdit} />
-      <ProfileCard
-        isOpen={isOpen}
-        profile={profile}
-        setProfile={setProfile}
-        isEdit={isEdit}
-        setIsEdit={setIsEdit}
-      />
+      <ProfileCard isOpen={isOpen} isEdit={isEdit} setIsEdit={setIsEdit} />
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} setIsEdit={setIsEdit} />
     </div>
   );

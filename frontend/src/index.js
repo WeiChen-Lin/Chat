@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Container from './components/container';
 import IndexPage from './components/logPage';
@@ -9,21 +9,17 @@ import '@material-tailwind/react/tailwind.css';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState({
-    username: '',
-    imageurl: '',
-    introduction: '',
-  });
+  // const [profile, setProfile] = useState({
+  //   username: '',
+  //   imageurl: '',
+  //   introduction: '',
+  // });
   useEffect(() => {
     const waitForCheckCookie = async () => {
       const loginChecker = await getUserByCookie();
       const status = loginChecker.status;
-      const userinfo = loginChecker.userinfo;
       setIsLogin(status);
       setLoading(false);
-      if (status) {
-        setProfile({ ...userinfo });
-      }
     };
     waitForCheckCookie();
   }, []);
@@ -38,9 +34,9 @@ function App() {
         {loading ? (
           <div></div>
         ) : isLogin ? (
-          <Container profile={profile} setProfile={setProfile} />
+          <Container />
         ) : (
-          <IndexPage handleIsLogin={handleIsLogin} setProfile={setProfile} />
+          <IndexPage handleIsLogin={handleIsLogin} />
         )}
       </div>
     </div>
