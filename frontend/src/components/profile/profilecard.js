@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import uploadImage from '../../img/uploadImage.png';
 import editImage from '../../img/edit.png';
-import checkImage from '../../img/check.png';
-import cancelImage from '../../img/cancel.png';
 import { getUserProfile } from '../../fetchers/profile/profile';
-
+import { Introduction } from './introduction';
 const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 
@@ -31,11 +29,6 @@ export default function ProfileCard(props) {
 
   const handleEdit = () => {
     setIsEdit(!isEdit);
-  };
-
-  const handleEditIntroduction = (e) => {
-    console.log(e.target.recent);
-    setProfile({ ...profile, introduction: e.target.value });
   };
 
   return (
@@ -68,57 +61,14 @@ export default function ProfileCard(props) {
                 <img src={editImage} alt="edit"></img>
               </div>
             </div>
-            {isEdit ? (
-              <EditIntroduction
-                introduction={profile.introduction}
-                handleEdit={handleEdit}
-                handleEditIntroduction={handleEditIntroduction}
-              />
-            ) : (
-              <Introduction introduction={profile.introduction} />
-            )}
+            <Introduction
+              introduction={profile.introduction}
+              handleEdit={handleEdit}
+              isEdit={isEdit}
+            />
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function Introduction(props) {
-  const { introduction } = props;
-  return <p className="py-2 text-base text-gray-700 w-80">{introduction}</p>;
-}
-
-function EditIntroduction(props) {
-  const { introduction, handleEdit, handleEditIntroduction } = props;
-
-  return (
-    <div className="flex flex-col">
-      <textarea
-        className="textarea textarea-bordered mt-2 p-2 text-base text-gray-700 w-80 row-span-5 resize-none border border-solid border-gray-300"
-        placeholder="自我介紹"
-        rows="4"
-        cols="71"
-        wrap="hard"
-        defaultValue={introduction}
-        onChange={(e) => {
-          handleEditIntroduction(e);
-        }}
-      ></textarea>
-      <div className="w-full h-7 mt-2 flex flex-row justify-start">
-        <img
-          className={`w-7 h-7 mt-1 mr-2 ${activeButton}`}
-          src={checkImage}
-          alt="check"
-          onClick={handleEdit}
-        ></img>
-        <img
-          className={`w-7 h-7 mt-1 ml-2 ${activeButton}`}
-          src={cancelImage}
-          alt="cancel"
-          onClick={handleEdit}
-        ></img>
-      </div>
     </div>
   );
 }
