@@ -1,4 +1,3 @@
-import React from 'react';
 import Input from '@material-tailwind/react/Input';
 
 export default function SearchInput() {

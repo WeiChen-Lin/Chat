@@ -1,5 +1,4 @@
-import React from 'react';
-import Friend from './friend';
+import Friend from 'Components/friendlist/friend';
 import SearchInput from './upperinput';
 
 const friend_list = [
@@ -26,38 +25,59 @@ const friend_list = [
   },
 ];
 
-class Friendlist extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      friend_list: friend_list,
-    };
-  }
-
-  render() {
-    const friends = this.state.friend_list.map((value, index) => {
-      return (
-        <Friend
-          key={value.userID}
-          name={value.name}
-          image={value.image}
-          last_min={value.last_min}
-          last_msg={value.last_msg}
-        />
-      );
-    });
-
-    return (
-      <div className="border-r border-gray-300 lg:col-span-1">
-        <SearchInput />
-        <ul className="overflow-auto h-[32rem]">
-          <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
-          {friends}
-        </ul>
-      </div>
-    );
-  }
+export default function Friendlist() {
+  return (
+    <div className="border-r border-gray-300 lg:col-span-1">
+      <SearchInput />
+      <ul className="overflow-auto h-[32rem]">
+        <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
+        {friend_list.map((x) => {
+          return (
+            <Friend
+              image={x.image}
+              name={x.name}
+              last_min={x.last_min}
+              last_msg={x.last_msg}
+              key={x.userID}
+            />
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
+// class Friendlist extends React.Component {
+//   constructor(props) {
+//     super(props);
 
-export default Friendlist;
+//     this.state = {
+//       friend_list: friend_list,
+//     };
+//   }
+
+//   render() {
+//     const friends = this.state.friend_list.map((value, index) => {
+//       return (
+//         <Friend
+//           key={value.userID}
+//           name={value.name}
+//           image={value.image}
+//           last_min={value.last_min}
+//           last_msg={value.last_msg}
+//         />
+//       );
+//     });
+
+//     return (
+//       <div className="border-r border-gray-300 lg:col-span-1">
+//         <SearchInput />
+//         <ul className="overflow-auto h-[32rem]">
+//           <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
+//           {friends}
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
+
+// export default Friendlist;
