@@ -17,7 +17,9 @@ export default function Members() {
         </div>
         <ul className="overflow-y-auto h-full">
           {memberlist.map((ele) => {
-            return <MemberUnit name={ele.name} introduction={ele.introduction} key={ele.userID} />;
+            return (
+              <MemberUnit name={ele.userName} introduction={ele.introduction} key={ele.userID} />
+            );
           })}
         </ul>
       </div>
