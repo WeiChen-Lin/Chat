@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import checkImage from '../../img/check.png';
-import cancelImage from '../../img/cancel.png';
-import { EditIntroduction } from '../../fetchers/profile/profile';
+import checkImage from 'Images/check.png';
+import cancelImage from 'Images/cancel.png';
+import { EditIntroduction } from 'Fetchers/profile/profile';
 const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 

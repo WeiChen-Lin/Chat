@@ -1,7 +1,7 @@
-import FreindList from './friendlist/friendlist';
-import MiddleChat from './middlechat/middlechat';
-import Members from './members/members';
-import Profile from './profile/profile';
+import FreindList from 'Components/friendlist/friendlist';
+import MiddleChat from 'Components/middlechat/middlechat';
+import Members from 'Components/members/members';
+import Profile from 'Components/profile/profile';
 import React from 'react';
 
 export default function Container() {

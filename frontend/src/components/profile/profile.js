@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Hamburger from './hamburger';
-import ProfileCard from './profilecard';
-import Background from './background';
+import Hamburger from 'Components/profile/hamburger';
+import ProfileCard from 'Components/profile/profilecard';
+import Background from 'Components/profile/background';
 export default function Profile(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);

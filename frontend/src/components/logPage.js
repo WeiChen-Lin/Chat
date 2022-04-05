@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import chat from './../img/chat.png';
-import useLogin from '../hooks/useLogin';
+import chat from 'Images/chat.png';
+import useLogin from 'Hooks/useLogin';
 
 export default function IndexPage(props) {
   const { handleIsLogin } = props;

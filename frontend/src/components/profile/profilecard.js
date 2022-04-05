@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import uploadImage from '../../img/uploadImage.png';
-import editImage from '../../img/edit.png';
-import { getUserProfile } from '../../fetchers/profile/profile';
-import { Introduction } from './introduction';
+import uploadImage from 'Images/uploadImage.png';
+import editImage from 'Images/edit.png';
+import { getUserProfile } from 'Fetchers/profile/profile';
+import { Introduction } from 'Components/profile/introduction';
 const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
 
