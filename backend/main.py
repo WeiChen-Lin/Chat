@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sql import table, schemas, user_crud
 from sql.database import SessionLocal, engine
 from router import profile
+from redis import redis_conn
 
 table.Base.metadata.create_all(bind=engine)
 
@@ -49,14 +50,13 @@ def get_db():
 """
 # 1. Login相關 api
 
-"""
-進到首頁後
+@app.on_event("startup")
+async def create_redis():
+    app.state.redis = await redis_conn.RedisCli()
 
-1. 是否含有chat-remember cookie
-    -> 有的話以 get打 api/login，帶上 localstorage的token，並且驗證JWT
-
-"""
-
+@app.on_event("shutdown")
+async def close_redis():
+    await app.state.redis.closeConn()
 
 def verify_JWT_header(req: Request):
     token = req.headers.get("Authorization", False)
