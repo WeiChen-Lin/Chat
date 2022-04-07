@@ -42,7 +42,7 @@ class ChatRedis:
         try:
             self.conn.close()
             await self.conn.wait_closed()
-            
+
         except Exception as e:
             print(e)
 

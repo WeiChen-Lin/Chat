@@ -1,17 +1,12 @@
 from fastapi import (
     Depends,
-    FastAPI,
-    HTTPException,
-    Cookie,
-    Header,
-    Response,
     Request,
     APIRouter,
 )
-from .utils import verify_JWT_header, Get_JWT_info, JWT_SECRET_KEY, ALGORITHM
+from .utils import Get_JWT_info
 from sql import profile_crud
 from sqlalchemy.orm import Session
-from sql.database import SessionLocal, engine
+from sql.database import SessionLocal
 
 router = APIRouter()
 
