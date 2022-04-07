@@ -7,11 +7,11 @@ from fastapi import (
 )
 from .utils import verify_JWT_header, JWT_SECRET_KEY, ALGORITHM
 from sqlalchemy.orm import Session
-from sql.database import SessionLocal, engine
-from sql import user_crud, schemas, table
+from sql.database import SessionLocal
+from sql import user_crud, schemas
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
-from typing import List, Optional
+from typing import Optional
 
 router = APIRouter()
 
