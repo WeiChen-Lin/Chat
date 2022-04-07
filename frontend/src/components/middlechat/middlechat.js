@@ -5,8 +5,8 @@ import Chatroom from 'Components/middlechat/chatroom';
 export default function MiddleChat() {
   return (
     <div className="lg:col-span-2 lg:block h-screen">
-      <Chatroom />
-      {/* <Unopen /> */}
+      {/* <Chatroom /> */}
+      <Unopen />
     </div>
   );
 }

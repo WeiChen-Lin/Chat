@@ -5,35 +5,35 @@ import aioredis
 class ChatRedis:
     async def setOnlineUser(self, uuid: str, userinfo: dict):
         try:
-            await self.conn.hset("AllOnlineUser", uuid, userinfo)
+            await self.conn.execute('HSET', 'AllOnlineUser', uuid, userinfo)
 
         except Exception as e:
             print(e)
 
     async def delOnlineuser(self, uuid: str, userinfo: dict):
         try:
-            await self.conn.hdel("AllOnlineUser", uuid)
+            return await self.conn.execute('HDEL', 'AllOnlineUser', uuid)
 
         except Exception as e:
             print(e)
 
     async def getAllOnlineUser(self):
         try:
-            return await self.conn.hgetall("AllOnlineUser")
+            return await self.conn.execute('HGETALL', 'AllOnlineUser')
 
         except Exception as e:
             print(e)
 
     async def setFriendInfo(self, uuid: str, friend_uuid: str, friend_userinfo: dict):
         try:
-            return await self.conn.hset(uuid, friend_uuid, friend_userinfo)
+            await self.conn.execute('HSET', uuid, friend_uuid, friend_userinfo)
 
         except Exception as e:
             print(e)
 
     async def getAllFriend(self, uuid: str):
         try:
-            return await self.conn.hgetall(uuid)
+            await self.conn.execute('HGETALL', uuid)
 
         except Exception as e:
             print(e)
@@ -48,5 +48,5 @@ class ChatRedis:
 
 
 async def RedisCli():
-    ChatRedis.conn = await aioredis.create_redis_pool("redis://localhost")
+    ChatRedis.conn = await aioredis.create_connection(('localhost', '6379'), encoding='utf-8')
     return ChatRedis()

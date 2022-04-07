@@ -1,14 +1,8 @@
-from datetime import datetime, timedelta
-from typing import List, Optional
-from urllib.request import Request
-
-from jose import JWTError, jwt
-from fastapi import Depends, FastAPI, HTTPException, Cookie, Header, Response, Request
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sql import table, schemas, user_crud
-from sql.database import SessionLocal, engine
-from router import profile, auth
+from sql import table 
+from sql.database import engine
+from router import profile, auth, ws_conn
 from redis_cli import redis_conn
 
 table.Base.metadata.create_all(bind=engine)
@@ -33,6 +27,7 @@ app.add_middleware(
 
 app.include_router(profile.router, prefix="/api/profile")
 app.include_router(auth.router, prefix="/api/login")
+app.include_router(ws_conn.router)
 
 
 @app.on_event("startup")

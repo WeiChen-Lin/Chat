@@ -2,7 +2,7 @@ import FreindList from 'Components/friendlist/friendlist';
 import MiddleChat from 'Components/middlechat/middlechat';
 import Members from 'Components/members/members';
 import Profile from 'Components/profile/profile';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Container() {
   return (

@@ -26,7 +26,6 @@ def get_db():
 
 @router.get("/")
 async def login(req: Request, db: Session = Depends(get_db)):
-    print("I trigger this function ")
     token = verify_JWT_header(req)
     try:
         payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])

@@ -25,59 +25,43 @@ const friend_list = [
   },
 ];
 
-export default function Friendlist() {
+export default function Friendlist(props) {
+  const { isLoading } = props;
+  const friends = friend_list.map((x) => {
+    return (
+      <Friend
+        image={x.image}
+        name={x.name}
+        last_min={x.last_min}
+        last_msg={x.last_msg}
+        key={x.userID}
+      />
+    );
+  });
   return (
     <div className="border-r border-gray-300 lg:col-span-1">
       <SearchInput />
       <ul className="overflow-auto h-[32rem]">
         <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
-        {friend_list.map((x) => {
-          return (
-            <Friend
-              image={x.image}
-              name={x.name}
-              last_min={x.last_min}
-              last_msg={x.last_msg}
-              key={x.userID}
-            />
-          );
-        })}
+        {isLoading ? <FriendsLoading /> : <FriendsLoading />}
       </ul>
     </div>
   );
 }
-// class Friendlist extends React.Component {
-//   constructor(props) {
-//     super(props);
 
-//     this.state = {
-//       friend_list: friend_list,
-//     };
-//   }
-
-//   render() {
-//     const friends = this.state.friend_list.map((value, index) => {
-//       return (
-//         <Friend
-//           key={value.userID}
-//           name={value.name}
-//           image={value.image}
-//           last_min={value.last_min}
-//           last_msg={value.last_msg}
-//         />
-//       );
-//     });
-
-//     return (
-//       <div className="border-r border-gray-300 lg:col-span-1">
-//         <SearchInput />
-//         <ul className="overflow-auto h-[32rem]">
-//           <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
-//           {friends}
-//         </ul>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Friendlist;
+const FriendsLoading = () => {
+  return (
+    <div class="bg-white rounded-md px-4">
+      <div class="mt-8 h-32 w-full space-y-3">
+        <div className="flex ">
+          <div class="w-12 h-12 bg-gray-200 rounded-full animate-pulse mr-2"></div>
+          <div className="flex flex-col">
+            <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
+            <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
+          </div>
+          <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1 ml-16"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
