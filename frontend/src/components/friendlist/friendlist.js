@@ -51,15 +51,15 @@ export default function Friendlist(props) {
 
 const FriendsLoading = () => {
   return (
-    <div class="bg-white rounded-md px-4">
-      <div class="mt-8 h-32 w-full space-y-3">
+    <div className="bg-white rounded-md px-4">
+      <div className="mt-8 h-32 w-full space-y-3">
         <div className="flex ">
-          <div class="w-12 h-12 bg-gray-200 rounded-full animate-pulse mr-2"></div>
+          <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse mr-2"></div>
           <div className="flex flex-col">
-            <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
-            <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
+            <div className="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
+            <div className="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1"></div>
           </div>
-          <div class="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1 ml-16"></div>
+          <div className="w-20 h-4 bg-gray-200 rounded-full animate-pulse my-1 ml-16"></div>
         </div>
       </div>
     </div>

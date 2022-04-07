@@ -29,14 +29,14 @@ export default function Members(props) {
 
 const OnlineUserLoading = () => {
   return (
-    <div class="bg-white rounded-md px-4">
-      <div class="mt-8 h-32 w-full space-y-3">
+    <div className="bg-white rounded-md px-4">
+      <div className="mt-8 h-32 w-full space-y-3">
         <div className="flex items-center">
-          <div class="w-12 h-12 bg-gray-200 rounded-full animate-pulse mr-2"></div>
-          <div class="w-20 h-6 bg-gray-200 rounded-full animate-pulse"></div>
+          <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse mr-2"></div>
+          <div className="w-20 h-6 bg-gray-200 rounded-full animate-pulse"></div>
         </div>
-        <div class="w-full h-4 bg-gray-200 rounded-full animate-pulse"></div>
-        <div class="w-full h-4 bg-gray-200 rounded-full animate-pulse"></div>
+        <div className="w-full h-4 bg-gray-200 rounded-full animate-pulse"></div>
+        <div className="w-full h-4 bg-gray-200 rounded-full animate-pulse"></div>
       </div>
     </div>
   );

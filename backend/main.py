@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from redis_cli.redis_conn import RedisCli
 from sql import table 
 from sql.database import engine
 from router import profile, auth, ws_conn

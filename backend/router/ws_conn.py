@@ -1,3 +1,4 @@
+from black import main
 from fastapi import (
     WebSocket,
     APIRouter
@@ -10,6 +11,7 @@ router = APIRouter()
 async def websocket_endpoint(websocket: WebSocket):
     print('Accepting client connection...')
     await websocket.accept()
+    print(websocket.app.state.redis)
     while True:
         try:
             # Wait for any message from the client

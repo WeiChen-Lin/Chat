@@ -1,6 +1,4 @@
-import asyncio
 import aioredis
-
 
 class ChatRedis:
     async def setOnlineUser(self, uuid: str, userinfo: dict):
