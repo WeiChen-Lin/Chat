@@ -33,3 +33,19 @@ def Get_JWT_info(req: Request):
 
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")
+
+
+def from_token_getinfo(token: str):
+
+    try:
+        payload = jwt.decode(token.split(" ")[1], JWT_SECRET_KEY, [ALGORITHM])
+        username = payload.get("username")
+        uuid = payload.get("id")
+        if not username or not uuid:
+            raise HTTPException(
+                status_code=401, detail="Invalid Authorization (info loss)"
+            )
+        return (uuid, username)
+
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid Authorization (jwt fail)")

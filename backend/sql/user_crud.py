@@ -52,3 +52,20 @@ def get_user_for_auth(db: Session, uuid: str, username: str):
     )
 
     return userinfo
+
+
+def get_user_for_redis(db: Session, uuid: str, username: str):
+
+    try:
+        userinfo = (
+            db.query(table.User.username, table.User.imageurl, table.User.introduction)
+            .filter(table.User.uuid == uuid and table.User.username == username)
+            .first()
+        )
+        return {
+            "username": userinfo[0],
+            "imageurl": userinfo[1],
+            "introduction": userinfo[2],
+        }
+    except Exception as e:
+        print(e)
