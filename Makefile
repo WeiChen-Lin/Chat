@@ -16,5 +16,8 @@ run-postgre:
 exec-postgre:
 	docker exec -it chatsql psql -U postgres
 
-#docker exec -it 7ecc435e3c6298089a6d77ef0fa6c2a6e01e7b9e3b4de0b22a7b9a84cb64300e psql -U postgres
-#	docker exec -it chatsql psql -U postgrespost
+run-redis:
+	docker run --rm -v chatredis:/data --name chat-redis -p 6379:6379 -d redis
+
+exec-redis:
+	docker exec -it chat-redis redis-cli
