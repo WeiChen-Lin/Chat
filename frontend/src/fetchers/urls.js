@@ -1,5 +1,7 @@
 export const domain = 'http://localhost:8000';
+export const wsdomain = 'ws://localhost:8000';
 export const AuthRoute = '/api/login';
 export const ProfileRoute = '/api/profile';
-
+export const FriendRoute = '/api/friend';
+export const SetonlineRoute = '/ws/setonline';
 export const token = localStorage.getItem('access-token');

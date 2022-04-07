@@ -1,4 +1,4 @@
-import { AuthRoute, domain } from '../urls';
+import { AuthRoute, domain } from 'Fetchers/urls';
 
 const getChatCookie = (name) => {
   const value = `; ${document.cookie}`;

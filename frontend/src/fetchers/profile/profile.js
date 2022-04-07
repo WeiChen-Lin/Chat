@@ -1,4 +1,4 @@
-import { domain, ProfileRoute, token } from '../urls';
+import { domain, ProfileRoute, token } from 'Fetchers/urls';
 
 const EditIntroduction = async (introduction) => {
   if (!token) return false;

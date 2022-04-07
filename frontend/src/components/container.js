@@ -3,8 +3,12 @@ import MiddleChat from 'Components/middlechat/middlechat';
 import Members from 'Components/members/members';
 import Profile from 'Components/profile/profile';
 import { useEffect, useState } from 'react';
+import { firstloading } from 'Websockets/firstload';
 
 export default function Container() {
+  useEffect(() => {
+    firstloading();
+  }, []);
   return (
     <div>
       <div className="absolute left-0 pt-[10%]">
