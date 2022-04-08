@@ -19,17 +19,17 @@ def get_db():
 @router.websocket("/ws/setonline")
 async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
     # RedisConn 物件放在 websocket.app.state.redis
-    print("Accepting client connection...")
     await websocket.accept()
     while True:
         try:
             # Wait for any message from the client
             text = await websocket.receive_text()
             uuid, username = from_token_getinfo(text)
+            print(f'connect with user: {username}')
             userinfo = user_crud.get_user_for_redis(db, uuid, username)
             await websocket.app.state.redis.setOnlineUser(uuid, json.dumps(userinfo))
         except Exception as e:
             print("error:", e)
             break
-    
+        
     await websocket.app.state.redis.delOnlineuser(uuid)

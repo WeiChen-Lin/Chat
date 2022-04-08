@@ -1,9 +1,9 @@
-import { domain, FriendRoute, token } from 'Fetchers/urls';
+import { domain, UserRoute, token } from 'Fetchers/urls';
 
-const getFriendList = async () => {
+const getAllOnlineUser = async () => {
   if (!token) return false;
   try {
-    const result = await fetch(`${domain}${FriendRoute}`, {
+    const result = await fetch(`${domain}${UserRoute}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'content-type': 'application/json',
@@ -20,4 +20,4 @@ const getFriendList = async () => {
   }
 };
 
-export { getFriendList };
+export { getAllOnlineUser };

@@ -1,7 +1,8 @@
-import { wsdomain, SetonlineRoute, token } from 'Fetchers/urls';
+import { wsdomain, SetonlineRoute } from 'Fetchers/urls';
 
 const firstloading = () => {
   const ws = new WebSocket(`${wsdomain}${SetonlineRoute}`);
+  const token = localStorage.getItem('access-token');
   ws.onopen = () => {
     ws.send(`Bearer ${token}`);
   };

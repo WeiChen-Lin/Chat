@@ -18,7 +18,16 @@ class ChatRedis:
 
     async def getAllOnlineUser(self):
         try:
-            return await self.conn.execute("HGETALL", "AllOnlineUser")
+            redisdata = await self.conn.execute("HGETALL", "AllOnlineUser")            
+            return_dict = {}
+            
+            for index in range(len(redisdata)):
+                if index % 2 != 0:
+                    continue
+                return_dict[redisdata[index]] = redisdata[index + 1]
+
+            return return_dict
+
 
         except Exception as e:
             print(e)

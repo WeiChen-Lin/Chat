@@ -33,7 +33,6 @@ const useLogin = () => {
         const result = await response.json();
         localStorage.setItem('access-token', result['access-token']);
         status.status = true;
-        status.userinfo = result.userinfo;
       } else {
         setAlertError('帳號或密碼錯誤');
         status.status = false;

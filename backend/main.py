@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from router import user
 from redis_cli.redis_conn import RedisCli
 from sql import table
 from sql.database import engine
@@ -29,6 +30,8 @@ app.add_middleware(
 app.include_router(profile.router, prefix="/api/profile")
 app.include_router(auth.router, prefix="/api/login")
 app.include_router(ws_conn.router)
+app.include_router(user.router, prefix='/api/user')
+
 
 
 @app.on_event("startup")
