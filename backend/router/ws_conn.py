@@ -25,11 +25,11 @@ async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)
             # Wait for any message from the client
             text = await websocket.receive_text()
             uuid, username = from_token_getinfo(text)
-            print(f'connect with user: {username}')
             userinfo = user_crud.get_user_for_redis(db, uuid, username)
+            print(f'websocket connect with user: {username}')
             await websocket.app.state.redis.setOnlineUser(uuid, json.dumps(userinfo))
         except Exception as e:
             print("error:", e)
             break
-        
+    print(f'{username} connection break')
     await websocket.app.state.redis.delOnlineuser(uuid)

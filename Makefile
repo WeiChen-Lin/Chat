@@ -1,8 +1,5 @@
 current_site := $(shell pwd)
 
-activate-py:
-	source /home/wcl/Desktop/ReactPractice/chat/chat/bin/activate
-
 run-app-reload:
 	uvicorn main:app --reload
 
@@ -21,3 +18,5 @@ run-redis:
 
 exec-redis:
 	docker exec -it chat-redis redis-cli
+
+build-backend-base-image:

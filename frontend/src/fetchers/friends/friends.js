@@ -1,6 +1,7 @@
-import { domain, FriendRoute, token } from 'Fetchers/urls';
+import { domain, FriendRoute } from 'Fetchers/urls';
 
 const getFriendList = async () => {
+  const token = localStorage.getItem('access-token');
   if (!token) return false;
   try {
     const result = await fetch(`${domain}${FriendRoute}`, {

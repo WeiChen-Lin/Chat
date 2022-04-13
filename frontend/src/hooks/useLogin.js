@@ -19,6 +19,7 @@ const useLogin = () => {
     }
 
     try {
+      localStorage.removeItem('access-token');
       const response = await fetch(domain + AuthRoute, {
         method: 'POST',
         body: JSON.stringify(userinfo),

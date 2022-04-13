@@ -1,6 +1,7 @@
-import { domain, UserRoute, token } from 'Fetchers/urls';
+import { domain, UserRoute } from 'Fetchers/urls';
 
 const getAllOnlineUser = async () => {
+  const token = localStorage.getItem('access-token');
   if (!token) return false;
   try {
     const result = await fetch(`${domain}${UserRoute}`, {

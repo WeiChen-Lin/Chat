@@ -1,6 +1,7 @@
-import { domain, ProfileRoute, token } from 'Fetchers/urls';
+import { domain, ProfileRoute } from 'Fetchers/urls';
 
 const EditIntroduction = async (introduction) => {
+  const token = localStorage.getItem('access-token');
   if (!token) return false;
   try {
     const result = await fetch(`${domain}${ProfileRoute}`, {
@@ -23,6 +24,7 @@ const EditIntroduction = async (introduction) => {
 };
 
 const getUserProfile = async () => {
+  const token = localStorage.getItem('access-token');
   if (!token) return false;
   try {
     const result = await fetch(`${domain}${ProfileRoute}`, {
