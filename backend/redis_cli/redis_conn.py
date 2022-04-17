@@ -1,62 +1,72 @@
-import aioredis
+import redis
 
+pool = redis.ConnectionPool(host='localhost', port=6379, decode_responses="utf-8")
 
 class ChatRedis:
-    async def setOnlineUser(self, uuid: str, userinfo: dict):
+
+    def __init__(self):
+        self._conn = redis.Redis(connection_pool=pool)
+        self.online_sub = 'allOnlineUser'
+        self.online_pub = 'allOnlineUser'
+    
+    def online_publisher(self, userinfo):
+
+        self._conn.publish(self.online_pub, userinfo)
+        return True
+        
+    def online_subscriber(self):
+
+        pub = self._conn.pubsub()
+
+        pub.subscribe(self.online_sub)
+        pub.parse_response()
+
+        return pub
+    
+    def setOnlineUser(self, uuid: str, userinfo: dict):
         try:
-            await self.conn.execute("HSET", "AllOnlineUser", uuid, userinfo)
+            self._conn.hset('AllOnlineUser', uuid, userinfo)
 
         except Exception as e:
             print(e)
 
-    async def delOnlineuser(self, uuid: str):
+    def delOnlineuser(self, uuid: str):
         try:
-            return await self.conn.execute("HDEL", "AllOnlineUser", uuid)
+            self._conn.hdel("AllOnlineUser", uuid)
 
         except Exception as e:
             print(e)
 
-    async def getAllOnlineUser(self):
+    def getAllOnlineUser(self):
+
         try:
-            redisdata = await self.conn.execute("HGETALL", "AllOnlineUser")            
-            return_dict = {}
-            
-            for index in range(len(redisdata)):
-                if index % 2 != 0:
-                    continue
-                return_dict[redisdata[index]] = redisdata[index + 1]
+            redisdata = self._conn.hgetall("AllOnlineUser")         
+            print(f'Redis hgetall data length is : {len(redisdata)}')
 
-            return return_dict
+            # for index in range(len(redisdata)):
+            #     if index % 2 != 0:
+            #         continue
+            #     return_dict[redisdata[index]] = redisdata[index + 1]
 
+            return redisdata
 
         except Exception as e:
             print(e)
 
-    async def setFriendInfo(self, uuid: str, friend_uuid: str, friend_userinfo: dict):
+    def setFriendInfo(self, uuid: str, friend_uuid: str, friend_userinfo: dict):
         try:
-            await self.conn.execute("HSET", uuid, friend_uuid, friend_userinfo)
+            self._conn.hset(uuid, friend_uuid, friend_userinfo)
 
         except Exception as e:
             print(e)
 
-    async def getAllFriend(self, uuid: str):
+    def getAllFriend(self, uuid: str):
         try:
-            await self.conn.execute("HGETALL", uuid)
-
-        except Exception as e:
-            print(e)
-
-    async def closeConn(self):
-        try:
-            self.conn.close()
-            await self.conn.wait_closed()
+            self._conn.hgetall(uuid)
 
         except Exception as e:
             print(e)
 
 
-async def RedisCli():
-    ChatRedis.conn = await aioredis.create_connection(
-        ("localhost", "6379"), encoding="utf-8"
-    )
-    return ChatRedis()
+
+ 

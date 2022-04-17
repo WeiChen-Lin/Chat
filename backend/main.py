@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from router import user
-from redis_cli.redis_conn import RedisCli
 from sql import table
 from sql.database import engine
 from router import profile, auth, ws_conn
@@ -36,9 +35,5 @@ app.include_router(user.router, prefix='/api/user')
 
 @app.on_event("startup")
 async def create_redis():
-    app.state.redis = await redis_conn.RedisCli()
+    app.state.redis = redis_conn.ChatRedis()
 
-
-@app.on_event("shutdown")
-async def close_redis():
-    await app.state.redis.closeConn()

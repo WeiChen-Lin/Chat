@@ -11,8 +11,13 @@ router = APIRouter()
 async def getAllOnlineUser(req: Request):
     uuid, username = Get_JWT_info(req)
     print(f'get api connect with user {username}')
-    onlineUsers = await req.app.state.redis.getAllOnlineUser()
-    onlineUsers.pop(uuid, None)
-    return onlineUsers
+    onlineUsers = req.app.state.redis.getAllOnlineUser()
+    print(onlineUsers)
+    try:
+        del onlineUsers[uuid]
+    except:
+        pass
+    finally:
+        return onlineUsers
 
 
