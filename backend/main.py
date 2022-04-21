@@ -25,15 +25,12 @@ app.add_middleware(
     ],
 )
 
-
 app.include_router(profile.router, prefix="/api/profile")
 app.include_router(auth.router, prefix="/api/login")
 app.include_router(ws_conn.router)
-app.include_router(user.router, prefix='/api/user')
-
+app.include_router(user.router, prefix="/api/user")
 
 
 @app.on_event("startup")
 async def create_redis():
     app.state.redis = redis_conn.ChatRedis()
-
