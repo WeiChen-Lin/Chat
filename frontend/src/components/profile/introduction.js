@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import checkImage from 'Images/check.png';
-import cancelImage from 'Images/cancel.png';
 import { EditIntroduction } from 'Fetchers/profile/profile';
 const activeButton =
   'hover:scale-105 active:scale-100 active:shadow-lg transition duration-100 cursor-pointer';
@@ -39,10 +37,10 @@ function Introduction(props) {
               handleEditIntroduction(e);
             }}
           ></textarea>
-          <div className="w-full h-7 mt-2 flex flex-row justify-start">
+          <div className="w-full h-6 mt-2 flex flex-row justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`w-7 h-7 mt-1 mr-2 ${activeButton}`}
+              className={`w-6 mt-1 mr-4 ${activeButton}`}
               viewBox="0 0 20 20"
               fill="currentColor"
               onClick={(e) => {
@@ -58,7 +56,7 @@ function Introduction(props) {
             </svg>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`w-7 h-7 mt-1 mr-2 ${activeButton}`}
+              className={`w-6 mt-1 mr-4 ${activeButton}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
