@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import uploadImage from 'Images/uploadImage.png';
-import editImage from 'Images/edit.png';
 import { getUserProfile } from 'Fetchers/profile/profile';
 import { Introduction } from 'Components/profile/introduction';
 const activeButton =
@@ -53,12 +51,30 @@ export default function ProfileCard(props) {
           <div className="py-4 px-6">
             <div className="flex">
               <h1 className="text-xl font-semibold text-gray-800 w-3/4">{profile.username}</h1>
-              <label className={`w-8 h-8 mr-4 ${activeButton}`}>
-                <img src={uploadImage} alt="upload"></img>
+              <label className={`w-6 h-6 mt-1 mr-4 ${activeButton}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
                 <input type="file" className="hidden" />
               </label>
-              <div className={`w-8 h-8 ${activeButton}`} onClick={handleEdit}>
-                <img src={editImage} alt="edit"></img>
+              <div className={`w-6 h-6 mt-1 ${activeButton}`} onClick={handleEdit}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                  />
+                </svg>
               </div>
             </div>
             <Introduction
