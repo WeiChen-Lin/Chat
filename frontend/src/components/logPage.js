@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import chat from 'Images/chat.png';
+import chat from 'Images/chat.svg';
 import useLogin from 'Hooks/useLogin';
 
 export default function IndexPage(props) {

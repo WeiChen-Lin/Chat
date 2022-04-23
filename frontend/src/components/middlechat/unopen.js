@@ -1,5 +1,5 @@
 import React from 'react';
-import chat from 'Images/chat.png';
+import chat from 'Images/chat.svg';
 
 export default function Unopen() {
   return (
