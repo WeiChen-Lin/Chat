@@ -14,7 +14,9 @@ export default function MemberUnit(props) {
       onMouseLeave={() => setIsHover(false)}
     >
       <a
-        className={`absolute flex-col px-3 py-2 text-sm border-b border-gray-300 focus:outline-none ${common_css}`}
+        className={`absolute flex-col px-3 py-2 text-sm border-b border-gray-300 focus:outline-none ${common_css} ${
+          isHover ? 'bg-stone-100' : ''
+        }`}
       >
         <div className="flex items-center">
           <img className="z-20 object-cover w-10 h-10 rounded-full" src={imageurl} alt="username" />

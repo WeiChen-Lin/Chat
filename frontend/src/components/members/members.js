@@ -33,29 +33,22 @@ export default function Members() {
   }, []);
 
   return (
-    <div className="border-gray-300 lg:col-span-1 lg:block h-screen">
-      <div className="w-full flex flex-col h-full justify-between">
-        <div className="bg-orange-200">
-          <h2 className="text-center mx-2 my-2 text-lg text-gray-600 ">Who's Online</h2>
-        </div>
-        <ul className="overflow-y-auto h-full">
-          {isLoading ? (
-            <OnlineUserLoading />
-          ) : (
-            onlineUser.map((ele) => {
-              return (
-                <MemberUnit
-                  key={ele.uuid}
-                  username={ele.username}
-                  imageurl={ele.imageurl}
-                  introduction={ele.introduction}
-                />
-              );
-            })
-          )}
-        </ul>
-      </div>
-    </div>
+    <ul className="overflow-y-auto h-full">
+      {isLoading ? (
+        <OnlineUserLoading />
+      ) : (
+        onlineUser.map((ele) => {
+          return (
+            <MemberUnit
+              key={ele.uuid}
+              username={ele.username}
+              imageurl={ele.imageurl}
+              introduction={ele.introduction}
+            />
+          );
+        })
+      )}
+    </ul>
   );
 }
 
