@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Members from 'Components/members/members';
+import Logout from 'Components/members/logout';
 
 export default function Rightbar() {
   return (
@@ -68,7 +69,8 @@ export default function Rightbar() {
             </li>
           </ul>
         </div>
-        <Members />
+        {/* <Members /> */}
+        <Logout />
       </div>
     </div>
   );
