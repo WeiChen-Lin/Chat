@@ -1,6 +1,6 @@
 import FreindList from 'Components/friendlist/friendlist';
 import MiddleChat from 'Components/middlechat/middlechat';
-import Rightbar from 'Components/members/rightbar';
+import Rightbar from 'Components/rightbar/rightbar';
 import Profile from 'Components/profile/profile';
 import { useEffect, useState } from 'react';
 import { firstloading } from 'Websockets/firstload';

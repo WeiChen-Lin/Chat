@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Members from 'Components/members/members';
-import Logout from 'Components/members/logout';
+import Members from 'Components/rightbar/members/members';
+import Logout from 'Components/rightbar/setting/logout';
 
 export default function Rightbar() {
   return (

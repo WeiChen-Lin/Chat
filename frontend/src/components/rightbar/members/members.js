@@ -1,4 +1,4 @@
-import MemberUnit from 'Components/members/member_unit';
+import MemberUnit from 'Components/rightbar/members/member_unit';
 import { useEffect, useState } from 'react';
 import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
 import { getRealtimeUser } from 'Websockets/getRealtime';
