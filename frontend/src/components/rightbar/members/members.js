@@ -17,10 +17,10 @@ const getUsersFromObject = (obj) => {
   return users;
 };
 
-export default function Members() {
+export default function Members(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [onlineUser, setOnlineUser] = useState([]);
-
+  const { barStatus } = props;
   useEffect(() => {
     async function getOnlineUser() {
       const users = await getAllOnlineUser();
@@ -33,7 +33,7 @@ export default function Members() {
   }, []);
 
   return (
-    <ul className="overflow-y-auto h-full">
+    <ul className={`overflow-y-auto h-full ${barStatus === 'users' ? '' : 'hidden'}`}>
       {isLoading ? (
         <OnlineUserLoading />
       ) : (

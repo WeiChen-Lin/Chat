@@ -1,14 +1,28 @@
 import { useState } from 'react';
 import Members from 'Components/rightbar/members/members';
-import Logout from 'Components/rightbar/setting/logout';
+import Settings from 'Components/rightbar/setting/setting';
+import Notification from './notification/notification';
+
+const _active = 'text-blue-600 border-blue-600 active dark:text-blue-500 dark:border-blue-500';
+const _deactive =
+  'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300';
 
 export default function Rightbar() {
+  const [barStatus, setBarStatus] = useState('users');
+
   return (
     <div className="border-gray-300 lg:col-span-1 lg:block h-screen">
       <div className="w-full flex flex-col h-full justify-between">
         <div className="border-b border-gray-200 dark:border-gray-700 cursor-pointer">
           <ul className="flex text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-            <li className="w-1/2 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500">
+            <li
+              className={`w-1/2 rounded-t-lg border-b-2 ${
+                barStatus === 'users' ? _active : _deactive
+              }`}
+              onClick={() => {
+                setBarStatus('users');
+              }}
+            >
               <a className="inline-flex p-4 group" aria-current="page">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -26,11 +40,18 @@ export default function Rightbar() {
                 </svg>
               </a>
             </li>
-            <li className="w-1/2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+            <li
+              className={`w-1/2 rounded-t-lg border-b-2 ${
+                barStatus === 'notification' ? _active : _deactive
+              }`}
+              onClick={() => {
+                setBarStatus('notification');
+              }}
+            >
               <a className="inline-flex p-4 group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"
+                  className="mr-2 w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -44,11 +65,18 @@ export default function Rightbar() {
                 </svg>
               </a>
             </li>
-            <li className="w-1/2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+            <li
+              className={`w-1/2 rounded-t-lg border-b-2 ${
+                barStatus === 'settings' ? _active : _deactive
+              }`}
+              onClick={() => {
+                setBarStatus('settings');
+              }}
+            >
               <a className="inline-flex p-4 group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"
+                  className="mr-2 w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -69,8 +97,9 @@ export default function Rightbar() {
             </li>
           </ul>
         </div>
-        {/* <Members /> */}
-        <Logout />
+        <Members barStatus={barStatus} />
+        <Settings barStatus={barStatus} />
+        <Notification barStatus={barStatus} />
       </div>
     </div>
   );
