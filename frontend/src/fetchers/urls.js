@@ -6,3 +6,4 @@ export const FriendRoute = '/api/friend';
 export const UserRoute = '/api/user';
 export const SetonlineRoute = '/ws/setonline';
 export const GetRealtimeRoute = '/ws/getonliner';
+export const ContainerRoute = '/ws/container';

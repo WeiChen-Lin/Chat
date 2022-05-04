@@ -25,9 +25,6 @@ export default function Container() {
 
     /* 即時更新用戶的上下線 */
     getRealtimeUser(setOnlineMember);
-
-    /* websocket 用戶上線 */
-    firstloading();
   }, []);
 
   return (

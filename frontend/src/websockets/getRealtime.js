@@ -1,4 +1,4 @@
-import { wsdomain, GetRealtimeRoute } from 'Fetchers/urls';
+import { wsdomain, ContainerRoute } from 'Fetchers/urls';
 
 const uniq = (a) => {
   var seen = {};
@@ -8,7 +8,7 @@ const uniq = (a) => {
 };
 
 const getRealtimeUser = (setOnlineUser) => {
-  const ws = new WebSocket(`${wsdomain}${GetRealtimeRoute}`);
+  const ws = new WebSocket(`${wsdomain}${ContainerRoute}`);
 
   const token = localStorage.getItem('access-token');
   ws.onopen = () => {
