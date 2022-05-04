@@ -21,9 +21,6 @@ class User(Base):
     imageurl = Column(Text)
     introduction = Column(Text)
 
-    # friendship = relationship("Friendship", back_populates="users")
-    # message = relationship("Message", back_populates="users")
-
 
 class Friendship(Base):
     __tablename__ = "friends"
@@ -33,7 +30,7 @@ class Friendship(Base):
         String, ForeignKey("users.uuid"), index=True, nullable=False
     )
     user_uuid_to = Column(String, ForeignKey("users.uuid"), nullable=False)
-    checked = Column(Boolean, index=True, default=False)
+    # checked = Column(Boolean, index=True, default=False)
 
     userfrom = relationship("User", foreign_keys=[user_uuid_from])
     userto = relationship("User", foreign_keys=[user_uuid_to])
@@ -43,12 +40,29 @@ class Message(Base):
     __tablename__ = "message"
 
     id = Column(Integer, primary_key=True)
+    group_id = Column(String, index=True, nullable=True)
     user_uuid_from = Column(
         String, ForeignKey("users.uuid"), index=True, nullable=False
     )
     user_uuid_to = Column(String, ForeignKey("users.uuid"), nullable=False)
+    message_type = Column(String, nullable=False)
     message = Column(Text, nullable=False)
     time = Column(DateTime(timezone=True), server_default=func.now())
+
+    userfrom = relationship("User", foreign_keys=[user_uuid_from])
+    userto = relationship("User", foreign_keys=[user_uuid_to])
+
+class Notification(Base):
+    __tablename__ = "notification"
+
+    id = Column(Integer, primary_key=True)
+    user_uuid_from = Column(
+        String, ForeignKey("users.uuid"), index=True, nullable=False
+    )
+    user_uuid_to = Column(String, ForeignKey("users.uuid"), index=True, nullable=False)
+    message_type = Column(String, nullable=False)
+    time = Column(DateTime(timezone=True), server_default=func.now())
+    status = Column(Integer, nullable=False)
 
     userfrom = relationship("User", foreign_keys=[user_uuid_from])
     userto = relationship("User", foreign_keys=[user_uuid_to])
