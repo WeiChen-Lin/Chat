@@ -24,34 +24,7 @@ def get_db():
 
 
 redis_conn = redis.Redis(connection_pool=pool)
-channel = "allOnlineUser"
-
-
-@router.websocket("/ws/setonline")
-async def setOnline(websocket: WebSocket, db: Session = Depends(get_db)):
-    # RedisConn 物件放在 websocket.app.state.redis
-    await websocket.accept()
-    while True:
-        try:
-            # Wait for any message from the client
-            text = await websocket.receive_text()
-            uuid, username = from_token_getinfo(text)
-            userinfo = user_crud.get_user_for_redis(db, uuid, username)
-            userinfo['uuid'] = uuid
-            userinfo['status'] = 'enter'
-            redis_conn.publish(channel, json.dumps(userinfo))
-            redis_conn.hset(channel, uuid, json.dumps(userinfo))
-
-            print(f"websocket connect with user: {username}")
-
-        except Exception as e:
-            print("error:", e)
-            break
-
-    userinfo['status'] = 'leave'
-    redis_conn.publish(channel, json.dumps(userinfo))
-    redis_conn.hdel("allOnlineUser", uuid)
-
+online_channel = "allOnlineUser"
 
 async def OnlinerPubSub(pubsub):
 
@@ -61,17 +34,23 @@ async def OnlinerPubSub(pubsub):
         return msg
     else:
         return None
-
-
-@router.websocket("/ws/getonliner")
-async def setOnline(websocket: WebSocket, db: Session = Depends(get_db)):
+    
+@router.websocket("/ws/container")
+async def container(websocket: WebSocket, db: Session = Depends(get_db)):
     # RedisConn 物件放在 websocket.app.state.redis
+
     await websocket.accept()
     text = await websocket.receive_text()
     uuid, username = from_token_getinfo(text)
     userinfo = user_crud.get_user_for_redis(db, uuid, username)
+    userinfo['uuid'] = uuid
+    userinfo['status'] = 'enter'
+    redis_conn.publish(online_channel, json.dumps(userinfo))
+    redis_conn.hset(online_channel, uuid, json.dumps(userinfo))
+
+    print(f"websocket connect with user: {username}")
     pubsub = redis_conn.pubsub()
-    pubsub.subscribe(channel)
+    pubsub.subscribe(online_channel)
     while True:
         try:
             # Check if connection is active
@@ -88,11 +67,13 @@ async def setOnline(websocket: WebSocket, db: Session = Depends(get_db)):
             continue
         except WebSocketDisconnect:
             # Connection closed by client
+            userinfo['status'] = 'leave'
+            redis_conn.publish(online_channel, json.dumps(userinfo))
+            redis_conn.hdel("allOnlineUser", uuid)
             break
 
         else:
             # Received some data from the client, ignore it
             continue
     
-    pubsub.unsubscribe(channel)
-    
+    pubsub.unsubscribe(online_channel)
