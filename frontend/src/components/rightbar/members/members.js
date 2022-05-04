@@ -1,43 +1,14 @@
 import MemberUnit from 'Components/rightbar/members/member_unit';
-import { useEffect, useState } from 'react';
-import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
-import { getRealtimeUser } from 'Websockets/getRealtime';
-
-const getUsersFromObject = (obj) => {
-  const users = [];
-  Object.entries(obj).forEach(([key, value]) => {
-    const userinfo = JSON.parse(value);
-    users.push({
-      uuid: key,
-      username: userinfo.username,
-      imageurl: userinfo.imageurl,
-      introduction: userinfo.introduction,
-    });
-  });
-  return users;
-};
 
 export default function Members(props) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [onlineUser, setOnlineUser] = useState([]);
-  const { barStatus } = props;
-  useEffect(() => {
-    async function getOnlineUser() {
-      const users = await getAllOnlineUser();
-      setIsLoading(false);
-      setOnlineUser(getUsersFromObject(users));
-      return true;
-    }
-    getOnlineUser();
-    getRealtimeUser(setOnlineUser);
-  }, []);
+  const { barStatus, membersIsLoading, onlineMember } = props;
 
   return (
     <ul className={`overflow-y-auto h-full ${barStatus === 'users' ? '' : 'hidden'}`}>
-      {isLoading ? (
+      {membersIsLoading ? (
         <OnlineUserLoading />
       ) : (
-        onlineUser.map((ele) => {
+        onlineMember.map((ele) => {
           return (
             <MemberUnit
               key={ele.uuid}

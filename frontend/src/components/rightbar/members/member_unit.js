@@ -19,7 +19,15 @@ export default function MemberUnit(props) {
         }`}
       >
         <div className="flex items-center">
-          <img className="z-20 object-cover w-10 h-10 rounded-full" src={imageurl} alt="username" />
+          {imageurl ? (
+            <img
+              className="z-20 object-cover w-10 h-10 rounded-full"
+              src={imageurl}
+              alt="username"
+            />
+          ) : (
+            <div className="z-20 object-cover w-10 h-10 rounded-full bg-slate-300"></div>
+          )}
           <div className="z-20 block ml-2 text-base font-semibold text-gray-600">{username}</div>
         </div>
         <div className="ml-10 px-2 w-4/5 break-words">{introduction}</div>
@@ -30,16 +38,41 @@ export default function MemberUnit(props) {
             isHover ? 'translate-x-0' : 'translate-x-full'
           } ${common_css}`}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-8 w-8 my-1 mr-1 ${activeButton}`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
-          </svg>
+          <DefaultIcon />
         </div>
       </div>
     </li>
   );
 }
+
+const WaitingIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 my-2 mr-2 cursor-not-allowed"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  );
+};
+
+const DefaultIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-6 w-6 my-2 mr-2 ${activeButton}`}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+    </svg>
+  );
+};

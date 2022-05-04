@@ -7,9 +7,9 @@ const _active = 'text-blue-600 border-blue-600 active dark:text-blue-500 dark:bo
 const _deactive =
   'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300';
 
-export default function Rightbar() {
+export default function Rightbar(props) {
   const [barStatus, setBarStatus] = useState('users');
-
+  const { membersIsLoading, onlineMember } = props;
   return (
     <div className="border-gray-300 lg:col-span-1 lg:block h-screen">
       <div className="w-full flex flex-col h-full justify-between">
@@ -97,7 +97,11 @@ export default function Rightbar() {
             </li>
           </ul>
         </div>
-        <Members barStatus={barStatus} />
+        <Members
+          barStatus={barStatus}
+          membersIsLoading={membersIsLoading}
+          onlineMember={onlineMember}
+        />
         <Settings barStatus={barStatus} />
         <Notification barStatus={barStatus} />
       </div>
