@@ -21,7 +21,7 @@ const getRealtimeUser = (setOnlineUser) => {
   ws.onmessage = (msg) => {
     const info = JSON.parse(JSON.parse(msg.data));
     if (info.status === 'leave') {
-      setOnlineUser((prev) => [...prev].filter((ele) => ele.uuid != info.uuid));
+      setOnlineUser((prev) => [...prev].filter((ele) => ele.uuid !== info.uuid));
     } else if (info.status === 'enter') {
       setOnlineUser((prev) =>
         uniq([

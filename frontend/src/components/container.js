@@ -3,7 +3,6 @@ import MiddleChat from 'Components/middlechat/middlechat';
 import Rightbar from 'Components/rightbar/rightbar';
 import Profile from 'Components/profile/profile';
 import { useEffect, useState } from 'react';
-import { firstloading } from 'Websockets/firstload';
 import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
 import { getRealtimeUser } from 'Websockets/getRealtime';
 import { getUsersFromObject } from 'Components/container_utils';
