@@ -1,15 +1,29 @@
-import NotificationUnit from 'Components/rightbar/notification/noti_unit';
+import { Friend_Inviting } from 'Components/rightbar/notification/noti_unit';
 
-export default function Notification(props) {
-  const { barStatus } = props;
+const setEachNotification = (n) => {
+  return (
+    <Friend_Inviting
+      key={n.user_uuid_from}
+      username={n.username}
+      imageUrl={n.imageUrl}
+      time={n.time}
+    />
+  );
+};
 
+export default Notification = (props) => {
+  const { barStatus, notification } = props;
+  console.log(typeof notification);
+  console.log(notification);
   return (
     <div
       className={`overflow-y-auto h-full flex flex-col ${
         barStatus === 'notification' ? '' : 'hidden'
       }`}
     >
-      <NotificationUnit />
+      {notification.map((noti) => {
+        return setEachNotification(noti);
+      })}
     </div>
   );
-}
+};

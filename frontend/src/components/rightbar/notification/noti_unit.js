@@ -1,18 +1,31 @@
-export default function NotificationUnit() {
+import { getNotificationTime } from 'Components/rightbar/notification/noti_utils';
+
+function ImgBackground() {
+  return (
+    <div className="w-full h-8 rounded-full bg-gradient-to-tr from-cyan-300 to-blue-400"></div>
+  );
+}
+
+const Friend_Inviting = (props) => {
+  const { username, imageUrl, time } = props;
+
   return (
     <div className="w-full flex-wrap p-3 mb-1 bg-white flex rounded cursor-pointer hover:bg-gray-100">
       <div className="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex items-center justify-center">
-        <img
-          className="w-full h-8 rounded-full object-cover object-center"
-          src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
-          alt="avatar"
-        />
+        {imageUrl ? (
+          <img className="w-full h-8 rounded-full object-cover object-center" src={imageUrl} />
+        ) : (
+          <ImgBackground />
+        )}
       </div>
       <div className="pl-3">
         <p className="focus:outline-none text-sm leading-none">
-          <span className="text-indigo-700">James Doe</span> Send a friend request to you
+          <span className="text-indigo-700 font-medium">{username}</span> Send a friend request to
+          you
         </p>
-        <p className="focus:outline-none text-xs leading-3 pt-1 text-gray-500">2 hours ago</p>
+        <p className="focus:outline-none text-xs leading-3 pt-1 text-gray-500">
+          {getNotificationTime(time)}
+        </p>
       </div>
       <div className="w-full">
         <div className="flex pl-12 pt-2">
@@ -26,4 +39,8 @@ export default function NotificationUnit() {
       </div>
     </div>
   );
-}
+};
+
+const Friend_Accept = () => {};
+
+export { Friend_Inviting, Friend_Accept };

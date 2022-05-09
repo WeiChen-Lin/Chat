@@ -9,7 +9,7 @@ const _deactive =
 
 export default function Rightbar(props) {
   const [barStatus, setBarStatus] = useState('users');
-  const { membersIsLoading, onlineMember } = props;
+  const { membersIsLoading, onlineMember, notification } = props;
   return (
     <div className="border-gray-300 lg:col-span-1 lg:block h-screen">
       <div className="w-full flex flex-col h-full justify-between">
@@ -103,7 +103,7 @@ export default function Rightbar(props) {
           onlineMember={onlineMember}
         />
         <Settings barStatus={barStatus} />
-        <Notification barStatus={barStatus} />
+        <Notification barStatus={barStatus} notification={notification} />
       </div>
     </div>
   );

@@ -13,8 +13,7 @@ const getAllNotification = async () => {
       method: 'GET',
     });
     if (result.status === 200) {
-      const profile = await result.text();
-      console.log(profile);
+      const profile = await result.json();
       return profile;
     }
     return false;
@@ -39,7 +38,7 @@ const sendFriendIntive = async (friend_uuid) => {
       method: 'POST',
     });
     if (result.status === 200) {
-      const profile = await result.text();
+      const profile = await result.json();
       console.log(profile);
       return profile;
     }

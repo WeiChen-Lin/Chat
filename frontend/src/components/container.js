@@ -10,10 +10,10 @@ import { getRealtimeNotification } from 'Websockets/getRealtime';
 import { getUsersFromObject } from 'Components/container_utils';
 
 export default function Container() {
-  const [friendIsLoading, setFriendIsLoading] = useState(true);
+  // const [friendIsLoading, setFriendIsLoading] = useState(true);
   const [membersIsLoading, setMembersIsLoading] = useState(true);
   const [onlineMember, setOnlineMember] = useState([]);
-  // const [notification, setNotification] = useState([]);
+  const [notification, setNotification] = useState([]);
 
   useEffect(() => {
     async function getOnlineUser() {
@@ -23,7 +23,7 @@ export default function Container() {
     }
     async function getNotification() {
       const notifications = await getAllNotification();
-      // setNotification(notifications);
+      setNotification(notifications);
     }
     /* 一進來取得所有上線的用戶 */
     getOnlineUser();
@@ -47,7 +47,11 @@ export default function Container() {
         <div className="min-w-full border-x rounded lg:grid lg:grid-cols-4 border-y-0 z-0">
           <FreindList />
           <MiddleChat />
-          <Rightbar membersIsLoading={membersIsLoading} onlineMember={onlineMember} />
+          <Rightbar
+            membersIsLoading={membersIsLoading}
+            onlineMember={onlineMember}
+            notification={notification}
+          />
         </div>
       </div>
     </div>

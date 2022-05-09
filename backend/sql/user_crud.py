@@ -115,6 +115,7 @@ def get_all_notification(db: Session, user_uuid_to: str):
                 table.User.imageurl,
                 table.Notification.message_type,
                 table.Notification.status,
+                table.Notification.time
             )
             .join(table.User, table.User.uuid == table.Notification.user_uuid_from)
             .filter(table.Notification.user_uuid_to == user_uuid_to)
