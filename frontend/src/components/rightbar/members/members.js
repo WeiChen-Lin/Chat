@@ -1,4 +1,5 @@
 import MemberUnit from 'Components/rightbar/members/member_unit';
+import { sendFriendIntive } from 'Fetchers/users/getNotification';
 
 export default function Members(props) {
   const { barStatus, membersIsLoading, onlineMember } = props;
@@ -15,6 +16,9 @@ export default function Members(props) {
               username={ele.username}
               imageurl={ele.imageurl}
               introduction={ele.introduction}
+              sendFriendIntive={() => {
+                sendFriendIntive(ele.uuid);
+              }}
             />
           );
         })

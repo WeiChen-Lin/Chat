@@ -4,9 +4,9 @@ export default function Logout() {
 
   return (
     <a
-      class={`m-auto w-1/2 relative inline-flex items-center px-8 py-3 overflow-hidden text-gray-600 border border-current rounded group active:text-gray-500 focus:outline-none cursor-pointer ${activeButton}`}
+      className={`m-auto w-1/2 relative inline-flex items-center px-8 py-3 overflow-hidden text-gray-600 border border-current rounded group active:text-gray-500 focus:outline-none cursor-pointer ${activeButton}`}
     >
-      <span class="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
+      <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -23,7 +23,7 @@ export default function Logout() {
         </svg>
       </span>
 
-      <span class="text-sm font-medium transition-all group-hover:ml-4">Log Out</span>
+      <span className="text-sm font-medium transition-all group-hover:ml-4">Log Out</span>
     </a>
   );
 }

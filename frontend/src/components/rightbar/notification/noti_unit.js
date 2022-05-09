@@ -16,10 +16,10 @@ export default function NotificationUnit() {
       </div>
       <div className="w-full">
         <div className="flex pl-12 pt-2">
-          <a class="text-center inline-block h-8 px-4 mr-4 leading-8 font-medium text-white transition bg-blue-400 rounded hover:scale-110 hover:shadow-xl active:bg-blue-500 focus:outline-none focus:ring">
+          <a className="text-center inline-block h-8 px-4 mr-4 leading-8 font-medium text-white transition bg-blue-400 rounded hover:scale-110 hover:shadow-xl active:bg-blue-500 focus:outline-none focus:ring">
             Confirm
           </a>
-          <a class="inline-block h-8 px-4 leading-8 font-medium text-black-400 transition border border-current rounded hover:scale-110 hover:shadow-xl active:text-indigo-500 focus:outline-none focus:ring">
+          <a className="inline-block h-8 px-4 leading-8 font-medium text-black-400 transition border border-current rounded hover:scale-110 hover:shadow-xl active:text-indigo-500 focus:outline-none focus:ring">
             Delete
           </a>
         </div>

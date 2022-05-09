@@ -52,6 +52,7 @@ class Message(Base):
     userfrom = relationship("User", foreign_keys=[user_uuid_from])
     userto = relationship("User", foreign_keys=[user_uuid_to])
 
+
 class Notification(Base):
     __tablename__ = "notification"
 
@@ -60,7 +61,7 @@ class Notification(Base):
         String, ForeignKey("users.uuid"), index=True, nullable=False
     )
     user_uuid_to = Column(String, ForeignKey("users.uuid"), index=True, nullable=False)
-    message_type = Column(String, nullable=False)
+    message_type = Column(Integer, nullable=False)
     time = Column(DateTime(timezone=True), server_default=func.now())
     status = Column(Integer, nullable=False)
 

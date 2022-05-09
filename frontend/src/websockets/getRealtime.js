@@ -1,4 +1,4 @@
-import { wsdomain, ContainerRoute } from 'Fetchers/urls';
+import { wsdomain, RealtimeUserRoute, RealtimeNotificationRoute } from 'Fetchers/urls';
 
 const uniq = (a) => {
   var seen = {};
@@ -8,7 +8,7 @@ const uniq = (a) => {
 };
 
 const getRealtimeUser = (setOnlineUser) => {
-  const ws = new WebSocket(`${wsdomain}${ContainerRoute}`);
+  const ws = new WebSocket(`${wsdomain}${RealtimeUserRoute}`);
 
   const token = localStorage.getItem('access-token');
   ws.onopen = () => {
@@ -38,4 +38,22 @@ const getRealtimeUser = (setOnlineUser) => {
   };
   return ws;
 };
-export { getRealtimeUser };
+
+const getRealtimeNotification = () => {
+  const ws = new WebSocket(`${wsdomain}${RealtimeNotificationRoute}`);
+
+  const token = localStorage.getItem('access-token');
+  ws.onopen = () => {
+    ws.send(`Bearer ${token}`);
+  };
+
+  ws.onclose = () => {
+    console.log('connection close');
+  };
+  ws.onmessage = (msg) => {
+    console.log(msg);
+  };
+  return ws;
+};
+
+export { getRealtimeUser, getRealtimeNotification };

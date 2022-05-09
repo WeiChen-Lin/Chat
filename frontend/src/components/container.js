@@ -4,26 +4,38 @@ import Rightbar from 'Components/rightbar/rightbar';
 import Profile from 'Components/profile/profile';
 import { useEffect, useState } from 'react';
 import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
+import { getAllNotification } from 'Fetchers/users/getNotification';
 import { getRealtimeUser } from 'Websockets/getRealtime';
+import { getRealtimeNotification } from 'Websockets/getRealtime';
 import { getUsersFromObject } from 'Components/container_utils';
 
 export default function Container() {
   const [friendIsLoading, setFriendIsLoading] = useState(true);
   const [membersIsLoading, setMembersIsLoading] = useState(true);
   const [onlineMember, setOnlineMember] = useState([]);
+  // const [notification, setNotification] = useState([]);
 
   useEffect(() => {
     async function getOnlineUser() {
       const users = await getAllOnlineUser();
       setMembersIsLoading(false);
       setOnlineMember(getUsersFromObject(users));
-      return true;
+    }
+    async function getNotification() {
+      const notifications = await getAllNotification();
+      // setNotification(notifications);
     }
     /* 一進來取得所有上線的用戶 */
     getOnlineUser();
 
+    /* 一進來取得所有通知 */
+    getNotification();
+
     /* 即時更新用戶的上下線 */
     getRealtimeUser(setOnlineMember);
+
+    /* 即時更新用戶的通知 */
+    getRealtimeNotification();
   }, []);
 
   return (

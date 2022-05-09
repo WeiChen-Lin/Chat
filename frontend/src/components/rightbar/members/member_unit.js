@@ -3,7 +3,7 @@ import { useState } from 'react';
 const activeButton = 'hover:scale-105 active:scale-100 active:shadow-lg duration-100';
 
 export default function MemberUnit(props) {
-  const { username, imageurl, introduction } = props;
+  const { username, imageurl, introduction, sendFriendIntive } = props;
   const [isHover, setIsHover] = useState(false);
   const common_css = `w-full flex transition duration-800 ease-in-out`;
 
@@ -12,6 +12,7 @@ export default function MemberUnit(props) {
       className="relative cursor-pointer"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      onClick={sendFriendIntive}
     >
       <a
         className={`absolute flex-col px-3 py-2 text-sm border-b border-gray-300 focus:outline-none ${common_css} ${

@@ -3,6 +3,7 @@ from passlib.context import CryptContext
 from . import table, schemas
 from uuid import uuid4
 
+
 # bcrypt
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -67,5 +68,58 @@ def get_user_for_redis(db: Session, uuid: str, username: str):
             "imageurl": userinfo[1],
             "introduction": userinfo[2],
         }
+    except Exception as e:
+        print(e)
+
+
+def send_invite(db: Session, user_uuid_from: str, user_uuid_to: str, message_type: int):
+
+    try:
+        invited_info_checker = (
+            db.query(
+                table.Notification.user_uuid_from,
+                table.Notification.user_uuid_to,
+                table.Notification.message_type,
+            )
+            .filter(
+                table.Notification.user_uuid_from == user_uuid_from
+                and table.Notification.user_uuid_to == user_uuid_to
+                and table.Notification.message_type == message_type
+            )
+            .first()
+        )
+        if not invited_info_checker:
+            _add = table.Notification(
+                user_uuid_from=user_uuid_from,
+                user_uuid_to=user_uuid_to,
+                message_type=message_type,
+                status=0,
+            )
+            db.add(_add)
+            db.commit()
+            db.refresh(_add)
+            return _add
+
+        return None
+
+    except Exception as e:
+        print(e)
+
+
+def get_all_notification(db: Session, user_uuid_to: str):
+    try:
+        notifications = (
+            db.query(
+                table.Notification.user_uuid_from,
+                table.User.username,
+                table.User.imageurl,
+                table.Notification.message_type,
+                table.Notification.status,
+            )
+            .join(table.User, table.User.uuid == table.Notification.user_uuid_from)
+            .filter(table.Notification.user_uuid_to == user_uuid_to)
+            .all()
+        )
+        return notifications
     except Exception as e:
         print(e)

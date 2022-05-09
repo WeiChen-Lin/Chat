@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Members from 'Components/rightbar/members/members';
 import Settings from 'Components/rightbar/setting/setting';
-import Notification from './notification/notification';
+import Notification from 'Components/rightbar/notification/notification';
 
 const _active = 'text-blue-600 border-blue-600 active dark:text-blue-500 dark:border-blue-500';
 const _deactive =
