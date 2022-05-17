@@ -1,5 +1,5 @@
 from fastapi import Depends, APIRouter
-from sql import user_crud
+from sql import user_crud, nty_crud
 from .utils import from_token_getinfo
 from sqlalchemy.orm import Session
 from sql.database import SessionLocal
@@ -83,11 +83,11 @@ async def RealtimeNotification(websocket: WebSocket, db: Session = Depends(get_d
     await websocket.accept()
     text = await websocket.receive_text()
     uuid, username = from_token_getinfo(text)
-    notifications = user_crud.get_all_notification(db, uuid)
+    notifications = nty_crud.get_all_notification(db, uuid)
 
     print(f"user: {username} get notifications")
     pubsub = redis_conn.pubsub()
-    pubsub.subscribe(f'{uuid}_notifications')
+    pubsub.subscribe(f"{uuid}_notifications")
     while True:
         try:
             # Check if connection is active
@@ -113,4 +113,4 @@ async def RealtimeNotification(websocket: WebSocket, db: Session = Depends(get_d
             # Received some data from the client, ignore it
             continue
 
-    pubsub.unsubscribe(f'{uuid}_notifications')
+    pubsub.unsubscribe(f"{uuid}_notifications")

@@ -12,7 +12,6 @@ export default function MemberUnit(props) {
       className="relative cursor-pointer"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      onClick={sendFriendIntive}
     >
       <a
         className={`absolute flex-col px-3 py-2 text-sm border-b border-gray-300 focus:outline-none ${common_css} ${
@@ -39,7 +38,7 @@ export default function MemberUnit(props) {
             isHover ? 'translate-x-0' : 'translate-x-full'
           } ${common_css}`}
         >
-          <DefaultIcon />
+          <ReplyIcon />
         </div>
       </div>
     </li>
@@ -74,6 +73,25 @@ const DefaultIcon = () => {
       fill="currentColor"
     >
       <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+    </svg>
+  );
+};
+
+const ReplyIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-6 w-6 my-2 mr-2 ${activeButton}`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+      />
     </svg>
   );
 };

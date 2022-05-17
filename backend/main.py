@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from router import user
 from sql import table
 from sql.database import engine
-from router import profile, auth, ws_conn
+from router import user, profile, auth, ws_conn, nty
 from redis_cli import redis_conn
 
 table.Base.metadata.create_all(bind=engine)
@@ -29,6 +28,7 @@ app.include_router(profile.router, prefix="/api/profile")
 app.include_router(auth.router, prefix="/api/login")
 app.include_router(ws_conn.router)
 app.include_router(user.router, prefix="/api/user")
+app.include_router(nty.router, prefix="/api/nty")
 
 
 @app.on_event("startup")

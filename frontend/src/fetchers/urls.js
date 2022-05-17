@@ -4,5 +4,6 @@ export const AuthRoute = '/api/login';
 export const ProfileRoute = '/api/profile';
 export const FriendRoute = '/api/friend';
 export const UserRoute = '/api/user';
+export const NtyRoute = '/api/nty';
 export const RealtimeUserRoute = '/ws/user';
 export const RealtimeNotificationRoute = '/ws/notification';
