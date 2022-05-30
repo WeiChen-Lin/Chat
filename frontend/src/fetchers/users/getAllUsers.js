@@ -13,6 +13,7 @@ const getAllOnlineUser = async () => {
     });
     if (result.status === 200) {
       const profile = await result.json();
+      console.log(profile)
       return profile;
     }
     return false;

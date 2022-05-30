@@ -16,9 +16,8 @@ export default function Members(props) {
               username={ele.username}
               imageurl={ele.imageurl}
               introduction={ele.introduction}
-              sendFriendIntive={() => {
-                sendFriendIntive(ele.uuid);
-              }}
+              uuid={ele.uuid}
+              inviteStatus={ele.inviteStatus}
             />
           );
         })

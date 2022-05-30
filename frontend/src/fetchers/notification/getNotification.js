@@ -32,7 +32,7 @@ const sendFriendIntive = async (friend_uuid) => {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        uuid: friend_uuid,
+        user_uuid_to: friend_uuid,
       }),
       method: 'POST',
     });

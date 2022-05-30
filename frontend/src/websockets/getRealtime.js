@@ -20,6 +20,7 @@ const getRealtimeUser = (setOnlineUser) => {
   };
   ws.onmessage = (msg) => {
     const info = JSON.parse(JSON.parse(msg.data));
+    console.log(info)
     if (info.status === 'leave') {
       setOnlineUser((prev) => [...prev].filter((ele) => ele.uuid !== info.uuid));
     } else if (info.status === 'enter') {
@@ -39,21 +40,4 @@ const getRealtimeUser = (setOnlineUser) => {
   return ws;
 };
 
-const getRealtimeNotification = () => {
-  const ws = new WebSocket(`${wsdomain}${RealtimeNotificationRoute}`);
-
-  const token = localStorage.getItem('access-token');
-  ws.onopen = () => {
-    ws.send(`Bearer ${token}`);
-  };
-
-  ws.onclose = () => {
-    console.log('connection close');
-  };
-  ws.onmessage = (msg) => {
-    console.log(msg);
-  };
-  return ws;
-};
-
-export { getRealtimeUser, getRealtimeNotification };
+export { getRealtimeUser };

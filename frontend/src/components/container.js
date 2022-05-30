@@ -6,19 +6,21 @@ import { useEffect, useState } from 'react';
 import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
 import { getAllNotification } from 'Fetchers/notification/getNotification';
 import { getRealtimeUser } from 'Websockets/getRealtime';
-import { getRealtimeNotification } from 'Websockets/getRealtime';
 import { getUsersFromObject } from 'Components/container_utils';
 
 export default function Container() {
-  // const [friendIsLoading, setFriendIsLoading] = useState(true);
+  const [friendIsLoading, setFriendIsLoading] = useState(true);
   const [membersIsLoading, setMembersIsLoading] = useState(true);
   const [onlineMember, setOnlineMember] = useState([]);
   const [notification, setNotification] = useState([]);
+  const [friends, setFriends] = useState([]);
   useEffect(() => {
     async function getInfos() {
-      const users = await getAllOnlineUser();
+      const userinfos = await getAllOnlineUser();
       setMembersIsLoading(false);
-      setOnlineMember(getUsersFromObject(users));
+      setFriendIsLoading(false);
+      setOnlineMember(getUsersFromObject(userinfos.onlineUsers));
+      setFriends(userinfos.friends);
 
       const notifications = await getAllNotification();
       setNotification(notifications);
@@ -27,11 +29,8 @@ export default function Container() {
     /* 一進來取得所有上線的用戶及取得所有通知 */
     getInfos();
 
-    /* 即時更新用戶的上下線 */
+    /* 即時更新用戶的上下線及接收通知 */
     getRealtimeUser(setOnlineMember);
-
-    /* 即時更新用戶的通知 */
-    getRealtimeNotification();
   }, []);
 
   return (
@@ -41,7 +40,7 @@ export default function Container() {
       </div>
       <div className="container mx-auto h-screen">
         <div className="min-w-full border-x rounded lg:grid lg:grid-cols-4 border-y-0 z-0">
-          <FreindList />
+          <FreindList friendIsLoading={friendIsLoading} friends={friends} />
           <MiddleChat />
           <Rightbar
             membersIsLoading={membersIsLoading}

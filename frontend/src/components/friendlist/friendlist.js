@@ -1,40 +1,16 @@
 import Friend from 'Components/friendlist/friend';
 import SearchInput from './upperinput';
 
-const friend_list = [
-  {
-    image: 'https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg',
-    name: 'Jhon Don',
-    last_min: '25 minutes',
-    last_msg: 'bye',
-    userID: 'user1',
-  },
-  {
-    image: 'https://cdn.pixabay.com/photo/2016/06/15/15/25/loudspeaker-1459128__340.png',
-    name: 'Sam',
-    last_min: '50 minutes',
-    last_msg: 'Good night',
-    userID: 'user2',
-  },
-  {
-    image: 'https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg',
-    name: 'Emma',
-    last_min: '6 hour',
-    last_msg: 'Good Morning',
-    userID: 'user3',
-  },
-];
-
 export default function Friendlist(props) {
-  const { isLoading } = props;
-  const friends = friend_list.map((x) => {
+  const { friendIsLoading, friends } = props;
+  const friend_list = friends.map((x) => {
     return (
       <Friend
-        image={x.image}
-        name={x.name}
+        key={x.user_uuid_to}
+        imageurl={x.imageurl}
+        name={x.username}
         last_min={x.last_min}
         last_msg={x.last_msg}
-        key={x.userID}
       />
     );
   });
@@ -43,7 +19,7 @@ export default function Friendlist(props) {
       <SearchInput />
       <ul className="overflow-auto h-[32rem]">
         <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
-        {isLoading ? <FriendsLoading /> : <FriendsLoading />}
+        {friendIsLoading ? <FriendsLoading /> : friend_list}
       </ul>
     </div>
   );

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Msg_type(Enum):
+class Status_type(Enum):
     FRIEND_INVITING = 0
     FRIEND_ACCEPT = 1
     FRIEND_REJECT = 2

@@ -70,3 +70,35 @@ def get_user_for_redis(db: Session, uuid: str, username: str):
         }
     except Exception as e:
         print(e)
+
+
+def get_info_within_login(db: Session, uuid: str):
+    """"""
+    try:
+        friends = (
+            db.query(
+                table.Friendship.user_uuid_to, table.User.username, table.User.imageurl
+            )
+            .join(table.User, table.Friendship.user_uuid_to == table.User.uuid)
+            .filter(table.Friendship.user_uuid_from == uuid)
+            .all()
+        )
+
+        notifications = (
+            db.query(
+                table.Notification.user_uuid_from,
+                table.User.username,
+                table.User.imageurl,
+                table.Notification.message_type,
+                table.Notification.status,
+                table.Notification.time,
+            )
+            .join(table.User, table.User.uuid == table.Notification.user_uuid_from)
+            .filter(table.Notification.user_uuid_to == uuid)
+            .all()
+        )
+
+        return {"friends": friends, "notifications": notifications}
+
+    except Exception as e:
+        print(e)
