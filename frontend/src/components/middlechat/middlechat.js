@@ -1,4 +1,3 @@
-import React from 'react';
 import Unopen from 'Components/middlechat/unopen';
 import Chatroom from 'Components/middlechat/chatroom';
 

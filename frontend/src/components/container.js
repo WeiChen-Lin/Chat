@@ -5,7 +5,7 @@ import Profile from 'Components/profile/profile';
 import { useEffect, useState } from 'react';
 import { getAllOnlineUser } from 'Fetchers/users/getAllUsers';
 import { getAllNotification } from 'Fetchers/notification/getNotification';
-import { getRealtimeUser } from 'Websockets/getRealtime';
+import { getRealtimeData } from 'Websockets/getRealtimeData';
 import { getUsersFromObject } from 'Components/container_utils';
 
 export default function Container() {
@@ -30,7 +30,7 @@ export default function Container() {
     getInfos();
 
     /* 即時更新用戶的上下線及接收通知 */
-    getRealtimeUser(setOnlineMember);
+    getRealtimeData(setOnlineMember);
   }, []);
 
   return (

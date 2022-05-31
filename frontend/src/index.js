@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import Container from 'Components/container';
-import IndexPage from 'Components/logPage';
+import IndexPage from 'Components/LogPage/logPage';
 import { getUserByCookie } from 'Fetchers/loginPage/remember';
 import './index.css';
 import '@material-tailwind/react/tailwind.css';

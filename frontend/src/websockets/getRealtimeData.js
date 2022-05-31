@@ -1,4 +1,4 @@
-import { wsdomain, RealtimeUserRoute, RealtimeNotificationRoute } from 'Fetchers/urls';
+import { wsdomain, RealtimeUserRoute } from 'Fetchers/urls';
 
 const uniq = (a) => {
   var seen = {};
@@ -7,7 +7,7 @@ const uniq = (a) => {
   });
 };
 
-const getRealtimeUser = (setOnlineUser) => {
+const getRealtimeData = (setOnlineUser) => {
   const ws = new WebSocket(`${wsdomain}${RealtimeUserRoute}`);
 
   const token = localStorage.getItem('access-token');
@@ -40,4 +40,4 @@ const getRealtimeUser = (setOnlineUser) => {
   return ws;
 };
 
-export { getRealtimeUser };
+export { getRealtimeData };
