@@ -38,7 +38,6 @@ const sendFriendIntive = async (friend_uuid) => {
     });
     if (result.status === 200) {
       const profile = await result.json();
-      console.log(profile);
       return profile;
     }
     return false;
@@ -64,7 +63,6 @@ const sendFriendResponse = async (friend_uuid, status) => {
     });
     if (result.status === 200) {
       const profile = await result.json();
-      console.log(profile);
       return profile;
     }
     return false;

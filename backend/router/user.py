@@ -27,6 +27,5 @@ async def getAllOnlineUser(req: Request, db: Session = Depends(get_db)):
         print(e)
     userinfos = user_crud.get_info_within_login(db, uuid)
     userinfos["onlineUsers"] = onlineUsers
-    pprint(userinfos)
-    handleInvite(userinfos['onlineUsers'], userinfos['notifications'])
+    # handleInvite(userinfos['onlineUsers'], userinfos['notifications'])
     return userinfos

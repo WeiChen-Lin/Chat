@@ -1,7 +1,6 @@
 import { Friend_Inviting } from 'Components/rightbar/notification/noti_unit';
 
 const setEachNotification = (n) => {
-  console.log(n);
   return (
     <Friend_Inviting
       key={n.user_uuid_from}

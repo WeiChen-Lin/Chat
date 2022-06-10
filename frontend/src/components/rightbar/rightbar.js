@@ -11,7 +11,7 @@ export default function Rightbar(props) {
   const [barStatus, setBarStatus] = useState('users');
   const { membersIsLoading, onlineMember, notification } = props;
   return (
-    <div className="border-gray-300 lg:col-span-1 lg:block h-screen">
+    <div className="border-gray-300 lg:col-span-1 lg:block h-screen relative">
       <div className="w-full flex flex-col h-full justify-between">
         <div className="border-b border-gray-200 dark:border-gray-700 cursor-pointer">
           <ul className="flex text-sm font-medium text-center text-gray-500 dark:text-gray-400">

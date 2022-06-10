@@ -34,7 +34,7 @@ export default function Container() {
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       <div className="absolute left-0 pt-[10%]">
         <Profile />
       </div>

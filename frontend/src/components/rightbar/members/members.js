@@ -1,11 +1,10 @@
-import MemberUnit from 'Components/rightbar/members/member_unit';
-import { sendFriendIntive } from 'Fetchers/notification/getNotification';
+import { MemberUnit } from 'Components/rightbar/members/member_unit';
 
 export default function Members(props) {
   const { barStatus, membersIsLoading, onlineMember } = props;
 
   return (
-    <ul className={`overflow-y-auto h-full ${barStatus === 'users' ? '' : 'hidden'}`}>
+    <ul className={`h-full ${barStatus === 'users' ? '' : 'hidden'}`}>
       {membersIsLoading ? (
         <OnlineUserLoading />
       ) : (

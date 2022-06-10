@@ -64,9 +64,9 @@ def handleInvite(onlineUsers, notificaitons):
                 onlineUsers[noti[0]] = handleOnlineUserObj(onlineUsers[noti[0]], 1)
         else:
             continue
-    
+
 
 def handleOnlineUserObj(user_str, inviteStatus):
     user_dict = json.loads(user_str)
-    user_dict['inviteStatus'] = inviteStatus
+    user_dict["inviteStatus"] = inviteStatus
     return json.dumps(user_dict)

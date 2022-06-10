@@ -26,6 +26,7 @@ class ChatRedis:
 
         try:
             redisdata = self._conn.hgetall("allOnlineUser")
+            print(redisdata)
             return redisdata
 
         except Exception as e:

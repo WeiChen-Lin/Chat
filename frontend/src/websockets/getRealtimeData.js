@@ -15,12 +15,9 @@ const getRealtimeData = (setOnlineUser) => {
     ws.send(`Bearer ${token}`);
   };
 
-  ws.onclose = () => {
-    console.log('connection close');
-  };
+  ws.onclose = () => {};
   ws.onmessage = (msg) => {
     const info = JSON.parse(JSON.parse(msg.data));
-    console.log(info)
     if (info.status === 'leave') {
       setOnlineUser((prev) => [...prev].filter((ele) => ele.uuid !== info.uuid));
     } else if (info.status === 'enter') {
