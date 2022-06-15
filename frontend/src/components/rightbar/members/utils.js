@@ -8,7 +8,7 @@ const WaitingIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8 ml-3 mb-1"
+      className="h-6 w-6 ml-4 mb-2"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -23,28 +23,32 @@ const WaitingIcon = () => {
   );
 };
 
-const DefaultIcon = () => {
+const DefaultIcon = (props) => {
+  const { clickSendInvite } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={`h-8 w-8 ml-3 mb-1 ${activeButton}`}
       viewBox="0 0 20 20"
       fill="currentColor"
+      onClick={clickSendInvite}
     >
       <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
     </svg>
   );
 };
 
-const ReplyIcon = () => {
+const ReplyIcon = (props) => {
+  const { clickSendInvite } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`h-8 w-8 ml-3 mb-1 ${activeButton}`}
+      className={`h-6 w-6 ml-4 mb-2 ${activeButton}`}
       fill="none"
       viewBox="0 0 22 22"
       stroke="currentColor"
       strokeWidth={2}
+      onClick={clickSendInvite}
     >
       <path
         strokeLinecap="round"
@@ -59,7 +63,7 @@ const LoadingIcon = () => {
   return (
     <svg
       role="status"
-      className="h-6 w-6 my-2 mr-2 animate-spin"
+      className="h-8 w-8 ml-3 mb-1 animate-spin"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

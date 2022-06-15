@@ -195,12 +195,6 @@ def get_member_detail(db: Session, member_uuid: str, my_uuid: str):
     if not send_checker and not receive_checker:
         inviteStatus = chatEnum.Friend_Reply_type.DEFAULT.value
 
-# class Friend_Reply_type(Enum):
-#     WAITING = 0
-#     SUCCESS = 1
-#     BLOCKING = 2
-#     DEFAULT = 3
-#     REPLY = 4
 
     elif send_checker or receive_checker:
         if send_checker:

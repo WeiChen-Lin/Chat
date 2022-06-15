@@ -5,10 +5,8 @@ import { getDetailInfo } from 'Fetchers/detail/getDetail';
 const MemberUnit = (props) => {
   const { uuid, username, imageurl } = props;
   const [isHover, setIsHover] = useState(false);
-  const [details, setDetails] = useState({
-    introduction: '',
-    inviteStatus: 0,
-  });
+  const [introduction, setIntroduction] = useState('');
+  const [inviteStatus, setInviteStatus] = useState(0);
   const [parentHeight, setParentHeight] = useState(0);
   const common_css = `w-full flex transition duration-800 ease-in-out`;
   const targetRef = useRef();
@@ -21,16 +19,17 @@ const MemberUnit = (props) => {
     return targetRef.current.offsetTop;
   };
 
-  const HoverFetchDate = async () => {
+  const hoverFetchData = async () => {
     const info = await getDetailInfo(uuid);
-    setDetails(info);
+    setIntroduction(info.introduction);
+    setInviteStatus(info.inviteStatus);
     setIsHover(true);
   };
 
   return (
     <li
       className="relative cursor-pointer"
-      onMouseEnter={() => HoverFetchDate()}
+      onMouseEnter={() => hoverFetchData()}
       onMouseLeave={() => setIsHover(false)}
       ref={targetRef}
     >
@@ -55,9 +54,12 @@ const MemberUnit = (props) => {
       <Member_details
         parentHeight={parentHeight}
         isHover={isHover}
-        infos={details}
+        introduction={introduction}
+        inviteStatus={inviteStatus}
+        setInviteStatus={setInviteStatus}
         username={username}
         imageurl={imageurl}
+        uuid={uuid}
       />
     </li>
   );
